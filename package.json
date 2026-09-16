@@ -1,0 +1,28 @@
+{
+  "name": "maha-interop-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Maharashtra Government Interoperability Middleware Platform",
+  "workspaces": [
+    "shared",
+    "auth-service",
+    "simulated-departments",
+    "adapters",
+    "consent-service",
+    "workflow-engine",
+    "audit-service",
+    "gateway",
+    "frontend"
+  ],
+  "scripts": {
+    "start:auth": "npm --workspace=auth-service run start",
+    "start:departments": "npm --workspace=simulated-departments run start",
+    "start:adapters": "npm --workspace=adapters run start",
+    "start:consent": "npm --workspace=consent-service run start",
+    "start:workflow": "npm --workspace=workflow-engine run start",
+    "start:audit": "npm --workspace=audit-service run start",
+    "start:gateway": "npm --workspace=gateway run start",
+    "start:frontend": "npm --workspace=frontend run dev",
+    "build:frontend": "npm --workspace=frontend run build"
+  }
+}

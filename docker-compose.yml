@@ -1,0 +1,238 @@
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: maha-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-maha_interop}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - maha-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: maha-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - maha-network
+
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: maha-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - maha-network
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: auth-service/Dockerfile
+    container_name: maha-auth-service
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8001
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-maha_interop}
+      - JWT_SECRET=${JWT_SECRET:-maha_gov_interop_super_secret_jwt_key_2026}
+    ports:
+      - "8001:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - maha-network
+
+  simulated-departments:
+    build:
+      context: .
+      dockerfile: simulated-departments/Dockerfile
+    container_name: maha-simulated-departments
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8002
+    ports:
+      - "8002:8002"
+    networks:
+      - maha-network
+
+  adapters:
+    build:
+      context: .
+      dockerfile: adapters/Dockerfile
+    container_name: maha-adapters
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8003
+      - DEPARTMENTS_SERVICE_URL=http://simulated-departments:8002
+    ports:
+      - "8003:8003"
+    depends_on:
+      - simulated-departments
+    networks:
+      - maha-network
+
+  mdm-service:
+    build:
+      context: ./mdm-service
+      dockerfile: Dockerfile
+    container_name: maha-mdm-service
+    restart: unless-stopped
+    environment:
+      - PORT=8004
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-maha_interop}
+    ports:
+      - "8004:8004"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - maha-network
+
+  consent-service:
+    build:
+      context: .
+      dockerfile: consent-service/Dockerfile
+    container_name: maha-consent-service
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8005
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-maha_interop}
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+    ports:
+      - "8005:8005"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - maha-network
+
+  workflow-engine:
+    build:
+      context: .
+      dockerfile: workflow-engine/Dockerfile
+    container_name: maha-workflow-engine
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8006
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-maha_interop}
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - MDM_SERVICE_URL=http://mdm-service:8004
+      - ADAPTERS_SERVICE_URL=http://adapters:8003
+      - CONSENT_SERVICE_URL=http://consent-service:8005
+    ports:
+      - "8006:8006"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - maha-network
+
+  audit-service:
+    build:
+      context: .
+      dockerfile: audit-service/Dockerfile
+    container_name: maha-audit-service
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8007
+      - MONGODB_URI=mongodb://mongodb:27017/maha_interop_audit
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+    ports:
+      - "8007:8007"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - maha-network
+
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    container_name: maha-gateway
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - JWT_SECRET=${JWT_SECRET:-maha_gov_interop_super_secret_jwt_key_2026}
+      - AUTH_SERVICE_URL=http://auth-service:8001
+      - DEPARTMENTS_SERVICE_URL=http://simulated-departments:8002
+      - ADAPTERS_SERVICE_URL=http://adapters:8003
+      - MDM_SERVICE_URL=http://mdm-service:8004
+      - CONSENT_SERVICE_URL=http://consent-service:8005
+      - WORKFLOW_SERVICE_URL=http://workflow-engine:8006
+      - AUDIT_SERVICE_URL=http://audit-service:8007
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth-service
+      - workflow-engine
+    networks:
+      - maha-network
+
+volumes:
+  postgres_data:
+  mongodb_data:
+
+networks:
+  maha-network:
+    driver: bridge
