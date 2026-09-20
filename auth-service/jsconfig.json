@@ -8,9 +8,13 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./",
     "baseUrl": "./",
+    "ignoreDeprecations": "6.0",
     "checkJs": false
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*",
+    "**/*.js"
+  ]
 }
