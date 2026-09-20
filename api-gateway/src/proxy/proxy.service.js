@@ -16,7 +16,7 @@ class ProxyService {
     };
   }
 
-  async forward(serviceKey, path, method, data, query = {}) {
+  async forward(serviceKey, path, method, data, query = {}, authHeader) {
     const targetBase = this.routes[serviceKey];
     if (!targetBase) {
       throw new Error(`No route configured for service: ${serviceKey}`);
@@ -30,7 +30,7 @@ class ProxyService {
         params: query,
         headers: { 
           'Content-Type': 'application/json',
-          'Authorization': req.headers['authorization'] // Forward the JWT token
+          'Authorization': authHeader 
         }
       });
       return response.data;
