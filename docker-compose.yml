@@ -95,7 +95,7 @@ services:
   adapters:
     build:
       context: .
-      dockerfile: adapters/Dockerfile
+      dockerfile: adapter-service/Dockerfile
     container_name: maha-adapters
     restart: unless-stopped
     environment:
@@ -207,7 +207,7 @@ services:
   gateway:
     build:
       context: .
-      dockerfile: gateway/Dockerfile
+      dockerfile: api-gateway/Dockerfile
     container_name: maha-gateway
     restart: unless-stopped
     environment:

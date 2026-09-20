@@ -41,7 +41,7 @@ class EventListenerService {
       
       try {
         await axios.put(`${this.services.workflow}/workflow/applications/${appId}/transition`, {
-          newState: 'DATA_RETRIEVED'
+          newState: 'DATA_RETRIEVAL'
         });
       } catch (e) {
         Logger.error(`Failed to transition workflow for ${appId}: ${e.message}`, 'EventBus');
@@ -55,7 +55,7 @@ class EventListenerService {
       
       try {
         await axios.put(`${this.services.workflow}/workflow/applications/${appId}/transition`, {
-          newState: 'ELIGIBILITY_CHECKED'
+          newState: 'ELIGIBILITY_CHECK'
         });
       } catch (e) {
         Logger.error(`Failed to transition workflow for ${appId}: ${e.message}`, 'EventBus');

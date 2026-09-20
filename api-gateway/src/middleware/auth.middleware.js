@@ -1,8 +1,9 @@
 const { NextFunction, Request, Response } = require('@nestjs/common');
 const { ApiResponse } = require('@maha-interop/shared');
+const axios = require('axios');
 
 class AuthMiddleware {
-  use(req, res, next) {
+  async use(req, res, next) {
     const authHeader = req.headers['authorization'];
     
     // Skip auth for auth-service endpoints
@@ -16,9 +17,22 @@ class AuthMiddleware {
       );
     }
     
-    // In a real system, we would call auth-service:8001/auth/me to validate the JWT
-    // For this implementation, we assume the token is valid if present
-    next();
+    try {
+      // SECURITY FIX: Actually validate the token with the Auth Service
+      const token = authHeader.split(' ')[1];
+      const response = await axios.get('http://auth-service:8001/auth/me', {
+        headers: { Authorization: authHeader }
+      });
+      
+      if (response.status === 200) {
+        req.user = response.data.data;
+        next();
+      }
+    } catch (error) {
+      return res.status(401).json(
+        ApiResponse.error('Unauthorized', 'Invalid or expired token')
+      );
+    }
   }
 }
 

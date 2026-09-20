@@ -75,12 +75,14 @@ class AuthService {
     }
 
     try {
+      // SECURITY FIX: Ignore client-supplied role on public registration.
+      // Default all new registrations to 'citizen'.
       const newUser = await this.usersService.createUser({
         username,
         password,
         fullName,
         email,
-        role,
+        role: 'citizen', 
         department,
       });
 
