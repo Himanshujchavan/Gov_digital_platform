@@ -1,12 +1,22 @@
 const { RabbitMQClient } = require('@maha-interop/shared');
 const { EventTypes, Exchanges } = require('@maha-interop/shared');
 const { WorkflowStates } = require('@maha-interop/shared');
+const axios = require('axios');
+const { Logger } = require('@maha-interop/shared');
 
 class WorkflowService {
   constructor() {
     this.rabbitMQ = new RabbitMQClient();
     this.applications = new Map(); // In production, this would be PostgreSQL
+
+    // Use env vars for direct service communication
+    this.services = {
+      mdm: process.env.MDM_SERVICE_URL || 'http://mdm-service:8004',
+      adapters: process.env.ADAPTERS_SERVICE_URL || 'http://adapters:8003',
+      consent: process.env.CONSENT_SERVICE_URL || 'http://consent-service:8005',
+    };
   }
+
 // ...existing code...
 
   async submitApplication(citizenId, schemeId, requestedData) {
@@ -40,28 +50,45 @@ class WorkflowService {
     // Event-Driven Orchestration: Publish event to trigger the next service
     switch (newState) {
       case WorkflowStates.CONSENT_REQUESTED:
-        await this.rabbitMQ.publish(Exchanges.CONSENT, 'consent.request', {
-          appId,
-          citizenId: app.citizenId,
-          purpose: `Application for ${app.schemeId}`,
-          dataFields: app.requestedData
-        });
+        try {
+          Logger.info(`Triggering Consent Request for App: ${appId}`, 'WorkflowService');
+          await axios.post(`${this.services.consent}/consent/request`, {
+            citizenId: app.citizenId,
+            requesterDept: 'Gov-Platform',
+            purpose: `Application for ${app.schemeId}`,
+            dataFields: app.requestedData
+          });
+        } catch (e) {
+          Logger.error(`Failed to request consent for ${appId}: ${e.message}`, 'WorkflowService');
+        }
         break;
-        
+
       case WorkflowStates.CONSENT_GRANTED:
-        // Trigger MDM Resolution
-        await this.rabbitMQ.publish(Exchanges.MDM, 'mdm.resolve', {
-          appId,
-          citizenId: app.citizenId
-        });
+        try {
+          Logger.info(`Triggering MDM Resolution for App: ${appId}`, 'WorkflowService');
+          const citizen = app.requestedData?.citizen || {};
+          const { data } = await axios.post(`${this.services.mdm}/mdm/resolve`, {
+            name: citizen.name, dob: citizen.dob, address: citizen.address, phone: citizen.phone,
+          });
+          app.masterId = data.master_id;
+          app.mdmConfidence = data.confidence;
+          await this.transition(appId, WorkflowStates.MDM_RESOLUTION);
+        } catch (e) {
+          Logger.error(`MDM resolution failed for ${appId}: ${e.message}`, 'WorkflowService');
+        }
         break;
-        
+
       case WorkflowStates.MDM_RESOLUTION:
-        // Trigger Data Retrieval via Adapters
-        await this.rabbitMQ.publish(Exchanges.WORKFLOW, 'workflow.data.retrieve', {
-          appId,
-          masterId: app.masterId
-        });
+        try {
+          Logger.info(`Triggering Data Retrieval for App: ${appId}`, 'WorkflowService');
+          const { data } = await axios.post(`${this.services.adapters}/adapters/transform`, {
+            masterId: app.masterId, department: 'revenue',
+          });
+          app.data = data;
+          await this.transition(appId, WorkflowStates.DATA_RETRIEVAL);
+        } catch (e) {
+          Logger.error(`Data retrieval failed for ${appId}: ${e.message}`, 'WorkflowService');
+        }
         break;
         
       case WorkflowStates.DATA_RETRIEVAL:

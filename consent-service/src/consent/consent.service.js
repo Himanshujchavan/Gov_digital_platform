@@ -1,9 +1,14 @@
 const { Injectable } = require('@nestjs/common');
 const { RabbitMQClient } = require('@maha-interop/shared');
 const { EventTypes, Exchanges } = require('@maha-interop/shared');
+const axios = require('axios');
+const { Logger } = require('@maha-interop/shared');
+
+const WORKFLOW_URL = process.env.WORKFLOW_SERVICE_URL || 'http://workflow-engine:8006';
 
 @Injectable()
 class ConsentService {
+
   constructor() {
     this.rabbitMQ = new RabbitMQClient();
     this.consents = new Map(); // In production, this would be PostgreSQL
@@ -38,21 +43,31 @@ class ConsentService {
   async respond(consentId, decision, citizenSignature) {
     const consent = this.consents.get(consentId);
     if (!consent) throw new Error('Consent request not found');
-    
+
     consent.status = decision === 'APPROVE' ? 'GRANTED' : 'REJECTED';
     consent.respondedAt = new Date();
     consent.signature = citizenSignature;
-    
+
     this.consents.set(consentId, consent);
-    
+
+    if (decision === 'APPROVE') {
+      try {
+        await axios.put(`${WORKFLOW_URL}/workflow/transition/${consent.appId || consentId}`, {
+          newState: 'CONSENT_GRANTED',
+        });
+      } catch (e) {
+        Logger.error(`Failed to notify workflow of consent approval: ${e.message}`, 'ConsentService');
+      }
+    }
+
     // Publish event
     const event = decision === 'APPROVE' ? 'consent.approved' : 'consent.rejected';
     await this.rabbitMQ.publish(
-      Exchanges.CONSENT, 
-      event, 
+      Exchanges.CONSENT,
+      event,
       { consentId, citizenId: consent.citizenId, status: consent.status }
     );
-    
+
     return consent;
   }
 

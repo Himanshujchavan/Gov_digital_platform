@@ -8,7 +8,7 @@ class ProxyService {
     this.routes = {
       'auth': 'http://auth-service:8001',
       'departments': 'http://simulated-departments:8002',
-      'adapters': 'http://adapter-service:8003',
+      'adapters': 'http://adapters:8003',
       'mdm': 'http://mdm-service:8004',
       'consent': 'http://consent-service:8005',
       'workflow': 'http://workflow-engine:8006',
