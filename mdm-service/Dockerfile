@@ -1,5 +1,10 @@
-# Base image for FastAPI
-FROM python:3.11-slim
+# Use a more secure, minimal base image
+FROM python:3.11-slim-bookworm
+
+# Install security updates and essential build tools
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends gcc python3-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 

@@ -1,6 +1,6 @@
-# Maharashtra Government Interoperability Middleware Platform
-> **API-First Integration Layer for Heterogeneous Maharashtra State Digital Systems**  
-> *Connecting Aaple Sarkar, MahaDBT 2.0, and Mahabhumi without replacing existing infrastructure.*
+# 129 Government Of Maharashtra
+## System integration and interoperability among government digital platforms, resulting in fragmented service delivery
+**Software | SIH26129**
 
 ---
 
@@ -15,8 +15,40 @@ Maharashtra operates multiple specialized digital platforms for citizen services
 
 **The Solution**: An **interoperability middleware platform** that sits *between* existing systems:
 1. **Connection Layer (Adapters)**: Ingests heterogeneous legacy APIs/JSON/XML and normalizes them into a canonical data model.
-2. **Understanding Layer (AI/MDM)**: Resolves disparate citizen identities across departments using probabilistic entity resolution (Jaro-Winkler, DOB, address cosine similarity) into a unified **Master Citizen ID** (`MC-10024`).
+2. **Understanding Layer (AI/MDM)**: Resolves disparate citizen identities across departments using probabilistic entity resolution (TF-IDF, Jaro-Winkler, DOB variance) into a unified **Master Citizen ID** (`MC-10024`).
 3. **Orchestration Layer (Workflow & Consent)**: Coordinates end-to-end multi-department service flows with explicit citizen consent, event-driven async messaging (RabbitMQ), and immutable audit logging.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Purpose |
+|---|---|---|
+| **Frontend** | React 18, Tailwind CSS, Zustand | Modern, responsive UI for Citizens, Officers, and Admins |
+| **API Gateway** | NestJS, Axios | Unified entry point, JWT validation, and reverse proxying |
+| **Orchestration** | NestJS, RabbitMQ | Saga-based workflow engine for async service coordination |
+| **Identity (MDM)** | FastAPI (Python), Scikit-Learn, Pandas | Probabilistic entity resolution and Master ID mapping |
+| **Consent** | NestJS, RabbitMQ | Granular, TTL-based consent lifecycle management |
+| **Adapters** | NestJS | Normalization of legacy dept data to Canonical models |
+| **Audit** | NestJS, MongoDB | Immutable, append-only event logging for compliance |
+| **Databases** | PostgreSQL, MongoDB | Relational data for MDM/Workflow, Document store for Audit |
+| **Infrastructure** | Docker, Docker Compose | Containerized microservices orchestration |
+
+---
+
+## 🔄 User Flow: The Scholarship Application Journey
+
+The platform transforms a fragmented process into a seamless, zero-document experience:
+
+1.  **Application**: Citizen submits a scholarship application via the **API Gateway**.
+2.  **Consent Request**: The **Workflow Engine** triggers the **Consent Service**, which sends a request to the citizen to share specific data (e.g., Income from Revenue, Land records from Mahabhumi).
+3.  **Citizen Approval**: Citizen approves the request. The **Consent Service** publishes a `consent.approved` event.
+4.  **Identity Resolution**: The **MDM Service** consumes the event, resolves the citizen's identity across departments using probabilistic matching, and assigns/links a **Master Citizen ID**.
+5.  **Data Normalization**: The **Adapter Service** fetches raw data from legacy Department APIs and transforms it into **Canonical JSON** formats.
+6.  **Eligibility Check**: The **Workflow Engine** validates the normalized data (e.g., `annualIncome <= 250,000`) to determine eligibility.
+7.  **Officer Review**: The application is queued for an officer who verifies the digitally signed extracts.
+8.  **Final Decision**: Application is `APPROVED` or `REJECTED`, and the citizen is notified.
+9.  **Audit Trail**: Every single step above is captured by the **Audit Service** as an immutable event.
 
 ---
 
@@ -35,7 +67,7 @@ Maharashtra operates multiple specialized digital platforms for citizen services
     ▼                      ▼                                     ▼                      ▼
 Auth Service         Workflow Engine                       Consent Service         Audit Service
 (NestJS :8001)       (NestJS :8006)                        (NestJS :8005)          (NestJS :8007)
- JWT / RBAC           State Machine                         Consent Lifecycle       Append-only (Mongo)
+ JWT / RBAC           Saga Orchestrator                     Consent Lifecycle       Immutable Log
                            │                                     │                      ▲
                            ├──────────────────┬──────────────────┤                      │
                            ▼                  ▼                  ▼                      │
@@ -54,28 +86,22 @@ Auth Service         Workflow Engine                       Consent Service      
 
 ---
 
-## 📊 Implementation Progress & Status Matrix
+## 📊 Implementation Status
 
-| Layer | Component / Phase | Stack | Status | Details |
-|---|---|---|:---:|---|
-| **Infra** | Monorepo, Workspaces, Docker, .env | Node / Docker | ✅ **Completed** | npm workspaces, `docker-compose.yml`, environment configs |
-| **Shared** | `@maha-interop/shared` | JavaScript | ✅ **Completed** | Canonical schemas, `ApiResponse`, `Logger`, resilient `RabbitMQClient` |
-| **Backend** | **Phase 1**: Auth Service & RBAC | NestJS (JS) | ✅ **Completed** | JWT strategy, role guards, 5 seeded demo users, 6/6 tests passed |
-| **Backend** | **Phase 2**: Dept APIs & Adapters | NestJS (JS) | ⏳ **Pending** | Aaple Sarkar, MahaDBT, Mahabhumi mock APIs + canonical adapters |
-| **Backend** | **Phase 3A**: MDM & Entity Resolution | FastAPI (Python) | ⏳ **Pending** | Probabilistic matching, Master Citizen ID, duplicate review |
-| **Backend** | **Phase 3B**: Consent Service | NestJS (JS) | ⏳ **Pending** | Consent lifecycle, expiration, RabbitMQ event emitter |
-| **Backend** | **Phase 4A**: Workflow Engine | NestJS (JS) | ⏳ **Pending** | 11-step scholarship state machine, async orchestrator |
-| **Backend** | **Phase 4B**: Event Bus Wiring | RabbitMQ | ⏳ **Pending** | Topic exchanges, durable queues, consumer listeners |
-| **Backend** | **Phase 4C**: Audit Service | NestJS / Mongo | ⏳ **Pending** | Append-only immutable log, search, resource audit trail |
-| **Backend** | **Phase 5**: API Gateway | NestJS (JS) | ⏳ **Pending** | Reverse proxy, route forwarding, rate limiting, logging |
-| **Backend** | **Phase 6**: E2E Backend Tests | Jest / Pytest | ⏳ **Pending** | Automated 10-step scholarship flow integration test |
-| **Frontend**| **Phase 1**: Auth & App Shell | React / Tailwind | ✅ **Completed** | Zustand auth store, route guards, 3 role layouts, hybrid demo mode |
-| **Frontend**| **Phase 2**: Citizen Scheme Flow | React / Hooks | ✅ **Completed** | Service catalog, zero-document application form, my applications |
-| **Frontend**| **Phase 3**: Consent Manager | React / Query | ✅ **Completed** | Interactive consent prompt, approve/reject, audit history & revoke |
-| **Frontend**| **Phase 4**: Real-Time Timeline | React / Stepper | ✅ **Completed** | 11-step visual state machine stepper with live auto-polling |
-| **Frontend**| **Phase 5**: Officer Dashboard | React / Tables | ✅ **Completed** | Pending review queue, cross-dept record verification, approve/reject |
-| **Frontend**| **Phase 6**: Admin & Monitoring | Recharts / React | ✅ **Completed** | SLA metrics, audit log inspector, ML duplicate review, data quality |
-| **Frontend**| **Phase 7**: Polish & Dockerfile | Vite / Nginx | ✅ **Completed** | Production bundle verified (2435 modules), multi-stage Dockerfile |
+| Layer | Component | Status | Details |
+|---|---|:---:|---|
+| **Infra** | Monorepo, Docker, .env | ✅ | npm workspaces, `docker-compose.yml` |
+| **Shared** | `@maha-interop/shared` | ✅ | Canonical schemas, `ApiResponse`, `RabbitMQClient` |
+| **Backend** | Auth Service & RBAC | ✅ | JWT strategy, role guards, seeded users |
+| **Backend** | Dept APIs & Adapters | ✅ | Normalization of Revenue, Welfare, Land data |
+| **Backend** | MDM & Entity Resolution | ✅ | TF-IDF, Jaro-Winkler, Master ID mapping |
+| **Backend** | Consent Service | ✅ | TTL-based consent, RabbitMQ event emitter |
+| **Backend** | Workflow Engine | ✅ | Saga-based state machine, async orchestrator |
+| **Backend** | Event Bus Wiring | ✅ | Topic exchanges, durable queues, listeners |
+| **Backend** | Audit Service | ✅ | Append-only immutable log, resource audit trail |
+| **Backend** | API Gateway | ✅ | Reverse proxy, JWT middleware, rate limiting |
+| **Backend** | E2E Backend Tests | ✅ | Full scholarship flow integration test |
+| **Frontend**| All Modules | ✅ | Auth, Citizen Flow, Consent, Timeline, Officer/Admin Dash |
 
 ---
 
