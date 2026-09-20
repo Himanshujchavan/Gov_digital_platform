@@ -14,11 +14,12 @@ class GatewayController {
     
     try {
       const result = await this.proxyService.forward(
-        service, 
-        fullPath, 
-        req.method, 
-        req.body, 
-        req.query
+        service,
+        fullPath,
+        req.method,
+        req.body,
+        req.query,
+        req.headers['authorization']
       );
       
       const status = result.status || 200;

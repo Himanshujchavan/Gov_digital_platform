@@ -1,4 +1,4 @@
-const { Controller, Post, Put, Get, Body, Param, NotFoundException, BadRequestException } = require('@nestjs/common');
+const { Controller, Post, Put, Get, Body, Param, NotFoundException, BadRequestException, Query } = require('@nestjs/common');
 const { ConsentService } = require('./consent.service');
 const { ApiResponse } = require('@maha-interop/shared');
 

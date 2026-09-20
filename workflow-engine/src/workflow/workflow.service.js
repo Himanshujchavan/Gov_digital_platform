@@ -75,16 +75,9 @@ class WorkflowService {
 
   async processEligibility(appId) {
     const app = this.applications.get(appId);
-    // Transition to Officer Review first to maintain human-in-the-loop
+    // Transition to Officer Review and STOP.
+    // The workflow now waits for an external call to the review endpoint.
     await this.transition(appId, WorkflowStates.OFFICER_REVIEW);
-    
-    // Mock eligibility logic: income <= 250,000
-    const income = app.data.financial?.annualIncome || 0;
-    const isEligible = income <= 250000;
-    
-    const finalState = isEligible ? WorkflowStates.APPROVED : WorkflowStates.REJECTED;
-    // In a real system, this would happen AFTER officer approval
-    await this.transition(appId, finalState);
   }
 
   getApplication(appId) {

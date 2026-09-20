@@ -2,36 +2,42 @@ const { Controller, Post, Get, Put, Body, Param, NotFoundException } = require('
 const { WorkflowService } = require('./workflow.service');
 const { ApiResponse } = require('@maha-interop/shared');
 
+@Controller('workflow')
 class WorkflowController {
   constructor(workflowService) {
     this.workflowService = workflowService;
   }
 
-  async submit(body) {
+  @Post('submit')
+  async submit(@Body() body) {
     const { citizenId, schemeId, requestedData } = body;
     const result = await this.workflowService.submitApplication(citizenId, schemeId, requestedData);
     return ApiResponse.success(result, 'Application submitted and workflow initiated');
   }
 
-  async getStatus(id) {
+  @Get('status/:id')
+  async getStatus(@Param('id') id) {
     const app = this.workflowService.getApplication(id);
     if (!app) throw new NotFoundException('Application not found');
     return ApiResponse.success(app, 'Application status retrieved');
   }
 
-  async getTimeline(id) {
+  @Get('timeline/:id')
+  async getTimeline(@Param('id') id) {
     const app = this.workflowService.getApplication(id);
     if (!app) throw new NotFoundException('Application not found');
     return ApiResponse.success(app.history, 'Workflow timeline retrieved');
   }
 
-  async transition(id, body) {
+  @Put('transition/:id')
+  async transition(@Param('id') id, @Body() body) {
     const { newState } = body;
     await this.workflowService.transition(id, newState);
     return ApiResponse.success({ appId: id, newState }, 'Workflow state transitioned successfully');
   }
 
-  async review(id, body) {
+  @Put('review/:id')
+  async review(@Param('id') id, @Body() body) {
     const { decision } = body; // 'APPROVE' or 'REJECT'
     // In a real system, this would transition from OFFICER_REVIEW
     const state = decision === 'APPROVE' ? 'APPROVED' : 'REJECTED';

@@ -27,7 +27,7 @@ class EventListenerService {
       
       try {
         await axios.put(`${this.services.workflow}/workflow/applications/${appId}/transition`, {
-          newState: 'MDM_RESOLVED'
+          newState: 'MDM_RESOLUTION'
         });
       } catch (e) {
         Logger.error(`Failed to transition workflow for ${appId}: ${e.message}`, 'EventBus');
