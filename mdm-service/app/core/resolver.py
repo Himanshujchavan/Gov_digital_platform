@@ -45,5 +45,29 @@ class EntityResolver:
         addr_score = self.address_similarity(req.address, profile.address)
         phone_score = self.phone_similarity(req.phone, profile.phone)
 
-        # Weighted Score: 0.35*name + 0.30*dob + 0.20*addr + 0.15*phone
-        return (0.35 * name_score) + (0.30 * dob_score) + (0.20 * addr_score) + (0.15 * phone_score)
+        # Handle missing fields: exclude them from the weighted average
+        weights = {'name': 0.35, 'dob': 0.30, 'addr': 0.20, 'phone': 0.15}
+        total_weight = 1.0
+        weighted_sum = 0.0
+        
+        if req.name and profile.name:
+            weighted_sum += weights['name'] * name_score
+        else:
+            total_weight -= weights['name']
+            
+        if req.dob and profile.dob:
+            weighted_sum += weights['dob'] * dob_score
+        else:
+            total_weight -= weights['dob']
+            
+        if req.address and profile.address:
+            weighted_sum += weights['addr'] * addr_score
+        else:
+            total_weight -= weights['addr']
+            
+        if req.phone and profile.phone:
+            weighted_sum += weights['phone'] * phone_score
+        else:
+            total_weight -= weights['phone']
+            
+        return weighted_sum / total_weight if total_weight > 0 else 0.0

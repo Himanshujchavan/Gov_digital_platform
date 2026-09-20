@@ -56,7 +56,7 @@ class WorkflowService {
         });
         break;
         
-      case WorkflowStates.MDM_RESOLVED:
+      case WorkflowStates.MDM_RESOLUTION:
         // Trigger Data Retrieval via Adapters
         await this.rabbitMQ.publish(Exchanges.WORKFLOW, 'workflow.data.retrieve', {
           appId,
@@ -64,7 +64,7 @@ class WorkflowService {
         });
         break;
         
-      case WorkflowStates.DATA_RETRIEVED:
+      case WorkflowStates.DATA_RETRIEVAL:
         // Trigger Eligibility Check
         await this.processEligibility(appId);
         break;
@@ -75,11 +75,15 @@ class WorkflowService {
 
   async processEligibility(appId) {
     const app = this.applications.get(appId);
+    // Transition to Officer Review first to maintain human-in-the-loop
+    await this.transition(appId, WorkflowStates.OFFICER_REVIEW);
+    
     // Mock eligibility logic: income <= 250,000
     const income = app.data.financial?.annualIncome || 0;
     const isEligible = income <= 250000;
     
     const finalState = isEligible ? WorkflowStates.APPROVED : WorkflowStates.REJECTED;
+    // In a real system, this would happen AFTER officer approval
     await this.transition(appId, finalState);
   }
 

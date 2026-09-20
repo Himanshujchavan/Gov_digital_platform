@@ -7,21 +7,21 @@
     "shared",
     "auth-service",
     "simulated-departments",
-    "adapters",
+    "adapter-service",
     "consent-service",
     "workflow-engine",
     "audit-service",
-    "gateway",
+    "api-gateway",
     "frontend"
   ],
   "scripts": {
     "start:auth": "npm --workspace=auth-service run start",
     "start:departments": "npm --workspace=simulated-departments run start",
-    "start:adapters": "npm --workspace=adapters run start",
+    "start:adapters": "npm --workspace=adapter-service run start",
     "start:consent": "npm --workspace=consent-service run start",
     "start:workflow": "npm --workspace=workflow-engine run start",
     "start:audit": "npm --workspace=audit-service run start",
-    "start:gateway": "npm --workspace=gateway run start",
+    "start:gateway": "npm --workspace=api-gateway run start",
     "start:frontend": "npm --workspace=frontend run dev",
     "build:frontend": "npm --workspace=frontend run build"
   }

@@ -6,13 +6,13 @@ const { ApiResponse } = require('@maha-interop/shared');
 class ProxyService {
   constructor() {
     this.routes = {
-      'auth': 'http://localhost:8001',
-      'departments': 'http://localhost:8002',
-      'adapters': 'http://localhost:8003',
-      'mdm': 'http://localhost:8004',
-      'consent': 'http://localhost:8005',
-      'workflow': 'http://localhost:8006',
-      'audit': 'http://localhost:8007',
+      'auth': 'http://auth-service:8001',
+      'departments': 'http://simulated-departments:8002',
+      'adapters': 'http://adapter-service:8003',
+      'mdm': 'http://mdm-service:8004',
+      'consent': 'http://consent-service:8005',
+      'workflow': 'http://workflow-engine:8006',
+      'audit': 'http://audit-service:8007',
     };
   }
 
@@ -28,7 +28,10 @@ class ProxyService {
         url: `${targetBase}${path}`,
         data,
         params: query,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': req.headers['authorization'] // Forward the JWT token
+        }
       });
       return response.data;
     } catch (error) {
