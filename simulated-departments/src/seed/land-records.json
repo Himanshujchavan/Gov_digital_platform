@@ -1,0 +1,705 @@
+[
+  {
+    "id": "LAND-4512",
+    "ownerName": "Rahul S.",
+    "dateOfBirth": "2002-03-12",
+    "landArea": 1.2,
+    "plotNo": "PLT-4512",
+    "surveyNo": "124/2A",
+    "hissaNo": "1",
+    "villageName": "Haveli",
+    "taluka": "Haveli",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4512",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4513",
+    "ownerName": "Priya Patil",
+    "dateOfBirth": "2001-08-25",
+    "landArea": 0.8,
+    "plotNo": "PLT-4513",
+    "surveyNo": "56/1B",
+    "hissaNo": "1",
+    "villageName": "Kothrud",
+    "taluka": "Haveli",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4513",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4514",
+    "ownerName": "Sunil V. Patil",
+    "dateOfBirth": "1988-07-20",
+    "landArea": 3.5,
+    "plotNo": "PLT-4514",
+    "surveyNo": "201/3",
+    "hissaNo": "1",
+    "villageName": "Saswad",
+    "taluka": "Haveli",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4514",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4515",
+    "ownerName": "Ganesh Shinde",
+    "dateOfBirth": "1995-11-05",
+    "landArea": 2.1,
+    "plotNo": "PLT-4515",
+    "surveyNo": "88/4",
+    "hissaNo": "1",
+    "villageName": "Wai",
+    "taluka": "Haveli",
+    "district": "Satara",
+    "propertyCardNo": "PC-SATARA-4515",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4516",
+    "ownerName": "Anita M. Deshmukh",
+    "dateOfBirth": "1992-04-18",
+    "landArea": 1.5,
+    "plotNo": "PLT-4516",
+    "surveyNo": "45/2",
+    "hissaNo": "1",
+    "villageName": "Badnera",
+    "taluka": "Haveli",
+    "district": "Amravati",
+    "propertyCardNo": "PC-AMRAVATI-4516",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4517",
+    "ownerName": "V. B. Gaikwad",
+    "dateOfBirth": "1999-09-30",
+    "landArea": 1.9,
+    "plotNo": "PLT-4517",
+    "surveyNo": "312/1",
+    "hissaNo": "1",
+    "villageName": "Barshi",
+    "taluka": "Haveli",
+    "district": "Solapur",
+    "propertyCardNo": "PC-SOLAPUR-4517",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4518",
+    "ownerName": "Sachin Kadam",
+    "dateOfBirth": "1990-12-10",
+    "landArea": 4.2,
+    "plotNo": "PLT-4518",
+    "surveyNo": "109/2",
+    "hissaNo": "1",
+    "villageName": "Karvir",
+    "taluka": "Haveli",
+    "district": "Kolhapur",
+    "propertyCardNo": "PC-KOLHAPUR-4518",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4519",
+    "ownerName": "Amit P. Joshi",
+    "dateOfBirth": "1994-02-28",
+    "landArea": 2.8,
+    "plotNo": "PLT-4519",
+    "surveyNo": "502/1",
+    "hissaNo": "1",
+    "villageName": "Kamptee",
+    "taluka": "Haveli",
+    "district": "Nagpur",
+    "propertyCardNo": "PC-NAGPUR-4519",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4520",
+    "ownerName": "Meena Kulkarni",
+    "dateOfBirth": "1987-10-15",
+    "landArea": 1.1,
+    "plotNo": "PLT-4520",
+    "surveyNo": "77/3",
+    "hissaNo": "1",
+    "villageName": "Dindori",
+    "taluka": "Haveli",
+    "district": "Nashik",
+    "propertyCardNo": "PC-NASHIK-4520",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4521",
+    "ownerName": "Dipak Bhosale",
+    "dateOfBirth": "1997-03-22",
+    "landArea": 2.4,
+    "plotNo": "PLT-4521",
+    "surveyNo": "64/1A",
+    "hissaNo": "1",
+    "villageName": "Nagar",
+    "taluka": "Haveli",
+    "district": "Ahilyanagar",
+    "propertyCardNo": "PC-AHILYANAGAR-4521",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4522",
+    "ownerName": "Swati Pawar",
+    "dateOfBirth": "1996-05-12",
+    "landArea": 1.7,
+    "plotNo": "PLT-4522",
+    "surveyNo": "155/2",
+    "hissaNo": "1",
+    "villageName": "Miraj",
+    "taluka": "Haveli",
+    "district": "Sangli",
+    "propertyCardNo": "PC-SANGLI-4522",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4523",
+    "ownerName": "Nilesh D. Wagh",
+    "dateOfBirth": "1991-08-08",
+    "landArea": 5,
+    "plotNo": "PLT-4523",
+    "surveyNo": "33/1B",
+    "hissaNo": "1",
+    "villageName": "Bhusawal",
+    "taluka": "Haveli",
+    "district": "Jalgaon",
+    "propertyCardNo": "PC-JALGAON-4523",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Land Records",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Kharif: Soyabean, Rabi: Jowar"
+    }
+  },
+  {
+    "id": "LAND-4524",
+    "ownerName": "Pallavi Thorat",
+    "dateOfBirth": "1981-02-11",
+    "landArea": 0.8,
+    "plotNo": "PLT-4524",
+    "surveyNo": "101/2",
+    "hissaNo": "2",
+    "villageName": "Village-1",
+    "taluka": "Taluka-2",
+    "district": "Amravati",
+    "propertyCardNo": "PC-AMRAVATI-4524",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Amravati",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4525",
+    "ownerName": "Sanjay Pawar",
+    "dateOfBirth": "1982-03-12",
+    "landArea": 1.1,
+    "plotNo": "PLT-4525",
+    "surveyNo": "102/3",
+    "hissaNo": "3",
+    "villageName": "Village-2",
+    "taluka": "Taluka-3",
+    "district": "Jalgaon",
+    "propertyCardNo": "PC-JALGAON-4525",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Jalgaon",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4526",
+    "ownerName": "Vandana Mane",
+    "dateOfBirth": "1983-04-13",
+    "landArea": 1.4,
+    "plotNo": "PLT-4526",
+    "surveyNo": "103/4",
+    "hissaNo": "1",
+    "villageName": "Village-3",
+    "taluka": "Taluka-4",
+    "district": "Thane",
+    "propertyCardNo": "PC-THANE-4526",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Thane",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4527",
+    "ownerName": "Kiran Chavan",
+    "dateOfBirth": "1984-05-14",
+    "landArea": 1.7,
+    "plotNo": "PLT-4527",
+    "surveyNo": "104/1",
+    "hissaNo": "2",
+    "villageName": "Village-4",
+    "taluka": "Taluka-5",
+    "district": "Sangli",
+    "propertyCardNo": "PC-SANGLI-4527",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Sangli",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4528",
+    "ownerName": "Pratik Bhosale",
+    "dateOfBirth": "1985-06-15",
+    "landArea": 2,
+    "plotNo": "PLT-4528",
+    "surveyNo": "105/2",
+    "hissaNo": "3",
+    "villageName": "Village-5",
+    "taluka": "Taluka-1",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4528",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Pune",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4529",
+    "ownerName": "Mayur Kulkarni",
+    "dateOfBirth": "1986-07-16",
+    "landArea": 2.3,
+    "plotNo": "PLT-4529",
+    "surveyNo": "106/3",
+    "hissaNo": "1",
+    "villageName": "Village-6",
+    "taluka": "Taluka-2",
+    "district": "Satara",
+    "propertyCardNo": "PC-SATARA-4529",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Satara",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4530",
+    "ownerName": "Kavita Sawant",
+    "dateOfBirth": "1987-08-17",
+    "landArea": 2.6,
+    "plotNo": "PLT-4530",
+    "surveyNo": "107/4",
+    "hissaNo": "2",
+    "villageName": "Village-7",
+    "taluka": "Taluka-3",
+    "district": "Kolhapur",
+    "propertyCardNo": "PC-KOLHAPUR-4530",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Kolhapur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4531",
+    "ownerName": "Abhishek More",
+    "dateOfBirth": "1988-01-10",
+    "landArea": 2.9,
+    "plotNo": "PLT-4531",
+    "surveyNo": "108/1",
+    "hissaNo": "3",
+    "villageName": "Village-8",
+    "taluka": "Taluka-4",
+    "district": "Nagpur",
+    "propertyCardNo": "PC-NAGPUR-4531",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Nagpur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4532",
+    "ownerName": "Rohan Jadhav",
+    "dateOfBirth": "1980-02-11",
+    "landArea": 3.1999999999999997,
+    "plotNo": "PLT-4532",
+    "surveyNo": "109/2",
+    "hissaNo": "1",
+    "villageName": "Village-9",
+    "taluka": "Taluka-5",
+    "district": "Nashik",
+    "propertyCardNo": "PC-NASHIK-4532",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Nashik",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4533",
+    "ownerName": "Kunal Deshmukh",
+    "dateOfBirth": "1981-03-12",
+    "landArea": 3.5,
+    "plotNo": "PLT-4533",
+    "surveyNo": "110/3",
+    "hissaNo": "2",
+    "villageName": "Village-10",
+    "taluka": "Taluka-1",
+    "district": "Solapur",
+    "propertyCardNo": "PC-SOLAPUR-4533",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Solapur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4534",
+    "ownerName": "Manish Gawade",
+    "dateOfBirth": "1982-04-13",
+    "landArea": 3.8,
+    "plotNo": "PLT-4534",
+    "surveyNo": "111/4",
+    "hissaNo": "3",
+    "villageName": "Village-11",
+    "taluka": "Taluka-2",
+    "district": "Amravati",
+    "propertyCardNo": "PC-AMRAVATI-4534",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Amravati",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4535",
+    "ownerName": "Neha Salunkhe",
+    "dateOfBirth": "1983-05-14",
+    "landArea": 4.1,
+    "plotNo": "PLT-4535",
+    "surveyNo": "112/1",
+    "hissaNo": "1",
+    "villageName": "Village-12",
+    "taluka": "Taluka-3",
+    "district": "Jalgaon",
+    "propertyCardNo": "PC-JALGAON-4535",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Jalgaon",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4536",
+    "ownerName": "Sonali Shinde",
+    "dateOfBirth": "1984-06-15",
+    "landArea": 4.4,
+    "plotNo": "PLT-4536",
+    "surveyNo": "113/2",
+    "hissaNo": "2",
+    "villageName": "Village-13",
+    "taluka": "Taluka-4",
+    "district": "Thane",
+    "propertyCardNo": "PC-THANE-4536",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Thane",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4537",
+    "ownerName": "Tushar Patil",
+    "dateOfBirth": "1985-07-16",
+    "landArea": 4.7,
+    "plotNo": "PLT-4537",
+    "surveyNo": "114/3",
+    "hissaNo": "3",
+    "villageName": "Village-14",
+    "taluka": "Taluka-5",
+    "district": "Sangli",
+    "propertyCardNo": "PC-SANGLI-4537",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Sangli",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4538",
+    "ownerName": "Akshay Kadam",
+    "dateOfBirth": "1986-08-17",
+    "landArea": 5,
+    "plotNo": "PLT-4538",
+    "surveyNo": "115/4",
+    "hissaNo": "1",
+    "villageName": "Village-15",
+    "taluka": "Taluka-1",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4538",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Pune",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4539",
+    "ownerName": "Pallavi Thorat",
+    "dateOfBirth": "1987-01-10",
+    "landArea": 5.3,
+    "plotNo": "PLT-4539",
+    "surveyNo": "116/1",
+    "hissaNo": "2",
+    "villageName": "Village-16",
+    "taluka": "Taluka-2",
+    "district": "Satara",
+    "propertyCardNo": "PC-SATARA-4539",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Satara",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4540",
+    "ownerName": "Sanjay Pawar",
+    "dateOfBirth": "1988-02-11",
+    "landArea": 5.6,
+    "plotNo": "PLT-4540",
+    "surveyNo": "117/2",
+    "hissaNo": "3",
+    "villageName": "Village-17",
+    "taluka": "Taluka-3",
+    "district": "Kolhapur",
+    "propertyCardNo": "PC-KOLHAPUR-4540",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Kolhapur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4541",
+    "ownerName": "Vandana Mane",
+    "dateOfBirth": "1980-03-12",
+    "landArea": 5.8999999999999995,
+    "plotNo": "PLT-4541",
+    "surveyNo": "118/3",
+    "hissaNo": "1",
+    "villageName": "Village-18",
+    "taluka": "Taluka-4",
+    "district": "Nagpur",
+    "propertyCardNo": "PC-NAGPUR-4541",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Nagpur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4542",
+    "ownerName": "Kiran Chavan",
+    "dateOfBirth": "1981-04-13",
+    "landArea": 6.2,
+    "plotNo": "PLT-4542",
+    "surveyNo": "119/4",
+    "hissaNo": "2",
+    "villageName": "Village-19",
+    "taluka": "Taluka-5",
+    "district": "Nashik",
+    "propertyCardNo": "PC-NASHIK-4542",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Nashik",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4543",
+    "ownerName": "Pratik Bhosale",
+    "dateOfBirth": "1982-05-14",
+    "landArea": 6.5,
+    "plotNo": "PLT-4543",
+    "surveyNo": "120/1",
+    "hissaNo": "3",
+    "villageName": "Village-20",
+    "taluka": "Taluka-1",
+    "district": "Solapur",
+    "propertyCardNo": "PC-SOLAPUR-4543",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Solapur",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4544",
+    "ownerName": "Mayur Kulkarni",
+    "dateOfBirth": "1983-06-15",
+    "landArea": 6.8,
+    "plotNo": "PLT-4544",
+    "surveyNo": "121/2",
+    "hissaNo": "1",
+    "villageName": "Village-21",
+    "taluka": "Taluka-2",
+    "district": "Amravati",
+    "propertyCardNo": "PC-AMRAVATI-4544",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Amravati",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4545",
+    "ownerName": "Kavita Sawant",
+    "dateOfBirth": "1984-07-16",
+    "landArea": 7.1,
+    "plotNo": "PLT-4545",
+    "surveyNo": "122/3",
+    "hissaNo": "2",
+    "villageName": "Village-22",
+    "taluka": "Taluka-3",
+    "district": "Jalgaon",
+    "propertyCardNo": "PC-JALGAON-4545",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Jalgaon",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4546",
+    "ownerName": "Abhishek More",
+    "dateOfBirth": "1985-08-17",
+    "landArea": 7.3999999999999995,
+    "plotNo": "PLT-4546",
+    "surveyNo": "123/4",
+    "hissaNo": "3",
+    "villageName": "Village-23",
+    "taluka": "Taluka-4",
+    "district": "Thane",
+    "propertyCardNo": "PC-THANE-4546",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Thane",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4547",
+    "ownerName": "Rohan Jadhav",
+    "dateOfBirth": "1986-01-10",
+    "landArea": 7.699999999999999,
+    "plotNo": "PLT-4547",
+    "surveyNo": "124/1",
+    "hissaNo": "1",
+    "villageName": "Village-24",
+    "taluka": "Taluka-5",
+    "district": "Sangli",
+    "propertyCardNo": "PC-SANGLI-4547",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Sangli",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  },
+  {
+    "id": "LAND-4548",
+    "ownerName": "Kunal Deshmukh",
+    "dateOfBirth": "1987-02-11",
+    "landArea": 8,
+    "plotNo": "PLT-4548",
+    "surveyNo": "125/2",
+    "hissaNo": "2",
+    "villageName": "Village-25",
+    "taluka": "Taluka-1",
+    "district": "Pune",
+    "propertyCardNo": "PC-PUNE-4548",
+    "extract712": {
+      "isDigitallySigned": true,
+      "signatoryAuthority": "Sub-Divisional Officer, Pune",
+      "mutationStatus": "CERTIFIED",
+      "cropDetails": "Agricultural Farmland"
+    }
+  }
+]

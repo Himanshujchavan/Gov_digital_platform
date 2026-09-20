@@ -1,0 +1,724 @@
+[
+  {
+    "id": "WEL-7821",
+    "fullName": "R. Sharma",
+    "dob": "2002-03-12",
+    "annualIncome": 250000,
+    "address": "Shivajinagar, Pune",
+    "district": "Pune",
+    "pincode": "411005",
+    "contact": "9822012345",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7822",
+    "fullName": "Priya S. Patil",
+    "dob": "2001-08-25",
+    "annualIncome": 180000,
+    "address": "Kothrud, Pune",
+    "district": "Pune",
+    "pincode": "411038",
+    "contact": "9823054321",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7823",
+    "fullName": "Sunil Patil",
+    "dob": "1988-07-20",
+    "annualIncome": 420000,
+    "address": "Saswad, Purandar",
+    "district": "Pune",
+    "pincode": "412301",
+    "contact": "9422011223",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7824",
+    "fullName": "Ganesh R. Shinde",
+    "dob": "1995-11-05",
+    "annualIncome": 310000,
+    "address": "Satara Road, Satara",
+    "district": "Satara",
+    "pincode": "415001",
+    "contact": "9890123456",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7825",
+    "fullName": "Anita Deshmukh",
+    "dob": "1992-04-18",
+    "annualIncome": 150000,
+    "address": "Samarth Col., Amravati",
+    "district": "Amravati",
+    "pincode": "444601",
+    "contact": "9765432109",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7826",
+    "fullName": "Vijay Gaikwad",
+    "dob": "1999-09-30",
+    "annualIncome": 210000,
+    "address": "Solapur City",
+    "district": "Solapur",
+    "pincode": "413001",
+    "contact": "9821098765",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7827",
+    "fullName": "Snehal D. More",
+    "dob": "2003-01-14",
+    "annualIncome": 120000,
+    "address": "Vashi, Navi Mumbai",
+    "district": "Thane",
+    "pincode": "400703",
+    "contact": "9819876543",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7828",
+    "fullName": "Sachin P. Kadam",
+    "dob": "1990-12-10",
+    "annualIncome": 550000,
+    "address": "Kolhapur",
+    "district": "Kolhapur",
+    "pincode": "416003",
+    "contact": "9822334455",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7829",
+    "fullName": "Pooja A. Chavan",
+    "dob": "2000-06-05",
+    "annualIncome": 240000,
+    "address": "CIDCO, Aurangabad",
+    "district": "Chhatrapati Sambhajinagar",
+    "pincode": "431003",
+    "contact": "9850123789",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7830",
+    "fullName": "Meena S. Kulkarni",
+    "dob": "1987-10-15",
+    "annualIncome": 390000,
+    "address": "Nashik City",
+    "district": "Nashik",
+    "pincode": "422013",
+    "contact": "9423112233",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7831",
+    "fullName": "Dipak T. Bhosale",
+    "dob": "1997-03-22",
+    "annualIncome": 290000,
+    "address": "Ahmednagar",
+    "district": "Ahilyanagar",
+    "pincode": "414001",
+    "contact": "9822667788",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7832",
+    "fullName": "Shubham S. Jadhav",
+    "dob": "2002-11-18",
+    "annualIncome": 175000,
+    "address": "Karad, Satara",
+    "district": "Satara",
+    "pincode": "415110",
+    "contact": "9850998877",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7833",
+    "fullName": "Swati E. Pawar",
+    "dob": "1996-05-12",
+    "annualIncome": 225000,
+    "address": "Sangli",
+    "district": "Sangli",
+    "pincode": "416415",
+    "contact": "9823445566",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-001",
+        "schemeName": "Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna",
+        "status": "IN_PROCESS",
+        "applicationDate": "2026-08-15"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7834",
+    "fullName": "Sonali More",
+    "dob": "1993-03-21",
+    "annualIncome": 160000,
+    "address": "Station Road, Nagpur",
+    "district": "Nagpur",
+    "pincode": "410011",
+    "contact": "9823000001",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7835",
+    "fullName": "Tushar Thorat",
+    "dob": "1994-04-22",
+    "annualIncome": 180000,
+    "address": "Station Road, Nashik",
+    "district": "Nashik",
+    "pincode": "410012",
+    "contact": "9823000002",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7836",
+    "fullName": "Akshay Jadhav",
+    "dob": "1995-05-23",
+    "annualIncome": 200000,
+    "address": "Station Road, Solapur",
+    "district": "Solapur",
+    "pincode": "410013",
+    "contact": "9823000003",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7837",
+    "fullName": "Pallavi Pawar",
+    "dob": "1996-06-24",
+    "annualIncome": 220000,
+    "address": "Station Road, Amravati",
+    "district": "Amravati",
+    "pincode": "410014",
+    "contact": "9823000004",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7838",
+    "fullName": "Sanjay Deshmukh",
+    "dob": "1997-07-25",
+    "annualIncome": 240000,
+    "address": "Station Road, Jalgaon",
+    "district": "Jalgaon",
+    "pincode": "410015",
+    "contact": "9823000005",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7839",
+    "fullName": "Vandana Mane",
+    "dob": "1998-08-26",
+    "annualIncome": 260000,
+    "address": "Station Road, Thane",
+    "district": "Thane",
+    "pincode": "410016",
+    "contact": "9823000006",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7840",
+    "fullName": "Kiran Gawade",
+    "dob": "1999-02-27",
+    "annualIncome": 280000,
+    "address": "Station Road, Sangli",
+    "district": "Sangli",
+    "pincode": "410017",
+    "contact": "9823000007",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7841",
+    "fullName": "Pratik Chavan",
+    "dob": "1992-03-20",
+    "annualIncome": 300000,
+    "address": "Station Road, Pune",
+    "district": "Pune",
+    "pincode": "410018",
+    "contact": "9823000008",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7842",
+    "fullName": "Mayur Salunkhe",
+    "dob": "1993-04-21",
+    "annualIncome": 320000,
+    "address": "Station Road, Satara",
+    "district": "Satara",
+    "pincode": "410019",
+    "contact": "9823000009",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7843",
+    "fullName": "Kavita Bhosale",
+    "dob": "1994-05-22",
+    "annualIncome": 340000,
+    "address": "Station Road, Kolhapur",
+    "district": "Kolhapur",
+    "pincode": "410020",
+    "contact": "9823000010",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7844",
+    "fullName": "Abhishek Shinde",
+    "dob": "1995-06-23",
+    "annualIncome": 360000,
+    "address": "Station Road, Nagpur",
+    "district": "Nagpur",
+    "pincode": "410021",
+    "contact": "9823000011",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7845",
+    "fullName": "Rohan Kulkarni",
+    "dob": "1996-07-24",
+    "annualIncome": 380000,
+    "address": "Station Road, Nashik",
+    "district": "Nashik",
+    "pincode": "410022",
+    "contact": "9823000012",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7846",
+    "fullName": "Kunal Patil",
+    "dob": "1997-08-25",
+    "annualIncome": 400000,
+    "address": "Station Road, Solapur",
+    "district": "Solapur",
+    "pincode": "410023",
+    "contact": "9823000013",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7847",
+    "fullName": "Manish Sawant",
+    "dob": "1998-02-26",
+    "annualIncome": 420000,
+    "address": "Station Road, Amravati",
+    "district": "Amravati",
+    "pincode": "410024",
+    "contact": "9823000014",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7848",
+    "fullName": "Neha Kadam",
+    "dob": "1999-03-27",
+    "annualIncome": 440000,
+    "address": "Station Road, Jalgaon",
+    "district": "Jalgaon",
+    "pincode": "410025",
+    "contact": "9823000015",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7849",
+    "fullName": "Sonali More",
+    "dob": "1992-04-20",
+    "annualIncome": 460000,
+    "address": "Station Road, Thane",
+    "district": "Thane",
+    "pincode": "410026",
+    "contact": "9823000016",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7850",
+    "fullName": "Tushar Thorat",
+    "dob": "1993-05-21",
+    "annualIncome": 480000,
+    "address": "Station Road, Sangli",
+    "district": "Sangli",
+    "pincode": "410027",
+    "contact": "9823000017",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7851",
+    "fullName": "Akshay Jadhav",
+    "dob": "1994-06-22",
+    "annualIncome": 500000,
+    "address": "Station Road, Pune",
+    "district": "Pune",
+    "pincode": "410028",
+    "contact": "9823000018",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7852",
+    "fullName": "Pallavi Pawar",
+    "dob": "1995-07-23",
+    "annualIncome": 520000,
+    "address": "Station Road, Satara",
+    "district": "Satara",
+    "pincode": "410029",
+    "contact": "9823000019",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7853",
+    "fullName": "Sanjay Deshmukh",
+    "dob": "1996-08-24",
+    "annualIncome": 540000,
+    "address": "Station Road, Kolhapur",
+    "district": "Kolhapur",
+    "pincode": "410030",
+    "contact": "9823000020",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7854",
+    "fullName": "Vandana Mane",
+    "dob": "1997-02-25",
+    "annualIncome": 560000,
+    "address": "Station Road, Nagpur",
+    "district": "Nagpur",
+    "pincode": "410031",
+    "contact": "9823000021",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7855",
+    "fullName": "Kiran Gawade",
+    "dob": "1998-03-26",
+    "annualIncome": 580000,
+    "address": "Station Road, Nashik",
+    "district": "Nashik",
+    "pincode": "410032",
+    "contact": "9823000022",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7856",
+    "fullName": "Pratik Chavan",
+    "dob": "1999-04-27",
+    "annualIncome": 600000,
+    "address": "Station Road, Solapur",
+    "district": "Solapur",
+    "pincode": "410033",
+    "contact": "9823000023",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7857",
+    "fullName": "Mayur Salunkhe",
+    "dob": "1992-05-20",
+    "annualIncome": 620000,
+    "address": "Station Road, Amravati",
+    "district": "Amravati",
+    "pincode": "410034",
+    "contact": "9823000024",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  },
+  {
+    "id": "WEL-7858",
+    "fullName": "Kavita Bhosale",
+    "dob": "1993-06-21",
+    "annualIncome": 640000,
+    "address": "Station Road, Jalgaon",
+    "district": "Jalgaon",
+    "pincode": "410035",
+    "contact": "9823000025",
+    "enrolledSchemes": [
+      {
+        "schemeId": "SCH-MAHA-002",
+        "schemeName": "Post Matric Scholarship for OBC Students",
+        "status": "SANCTIONED",
+        "applicationDate": "2026-07-10"
+      }
+    ],
+    "currentStatus": "ACTIVE"
+  }
+]

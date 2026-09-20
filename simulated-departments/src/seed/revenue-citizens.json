@@ -1,0 +1,962 @@
+[
+  {
+    "citizen_name": "Rahul Sharma",
+    "birth_date": "2002-03-12",
+    "income_amt": 250000,
+    "addr": "Plot 42, Shivajinagar, Pune",
+    "dist": "Pune",
+    "pin": "411005",
+    "phone_num": "9822012345",
+    "id": "REV-1021",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-9921",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Pune",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1021",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Priya Patil",
+    "birth_date": "2001-08-25",
+    "income_amt": 180000,
+    "addr": "Flat 301, Kothrud, Pune",
+    "dist": "Pune",
+    "pin": "411038",
+    "phone_num": "9823054321",
+    "id": "REV-1022",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-8812",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Pune",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1022",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Sunil Vasantrao Patil",
+    "birth_date": "1988-07-20",
+    "income_amt": 420000,
+    "addr": "At Post Saswad, Taluka Purandar",
+    "dist": "Pune",
+    "pin": "412301",
+    "phone_num": "9422011223",
+    "id": "REV-1023",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-7734",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Pune",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1023",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Ganesh Ramesh Shinde",
+    "birth_date": "1995-11-05",
+    "income_amt": 310000,
+    "addr": "Ganesh Nagar, Satara Road, Satara",
+    "dist": "Satara",
+    "pin": "415001",
+    "phone_num": "9890123456",
+    "id": "REV-1024",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-6645",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Satara",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1024",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Anita Mohan Deshmukh",
+    "birth_date": "1992-04-18",
+    "income_amt": 150000,
+    "addr": "Samarth Colony, Amravati",
+    "dist": "Amravati",
+    "pin": "444601",
+    "phone_num": "9765432109",
+    "id": "REV-1025",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-5521",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Amravati",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1025",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Vijay Babanrao Gaikwad",
+    "birth_date": "1999-09-30",
+    "income_amt": 210000,
+    "addr": "Shivaji Chowk, Solapur",
+    "dist": "Solapur",
+    "pin": "413001",
+    "phone_num": "9821098765",
+    "id": "REV-1026",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-4432",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Solapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1026",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Snehal Dattatray More",
+    "birth_date": "2003-01-14",
+    "income_amt": 120000,
+    "addr": "Sector 15, Vashi, Navi Mumbai",
+    "dist": "Thane",
+    "pin": "400703",
+    "phone_num": "9819876543",
+    "id": "REV-1027",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-3321",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Thane",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1027",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Sachin Pandurang Kadam",
+    "birth_date": "1990-12-10",
+    "income_amt": 550000,
+    "addr": "Tarabai Park, Kolhapur",
+    "dist": "Kolhapur",
+    "pin": "416003",
+    "phone_num": "9822334455",
+    "id": "REV-1028",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-2210",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Kolhapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1028",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Pooja Ashokrao Chavan",
+    "birth_date": "2000-06-05",
+    "income_amt": 240000,
+    "addr": "CIDCO N-4, Aurangabad",
+    "dist": "Chhatrapati Sambhajinagar",
+    "pin": "431003",
+    "phone_num": "9850123789",
+    "id": "REV-1029",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1199",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Chhatrapati Sambhajinagar",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1029",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Amit Prabhakar Joshi",
+    "birth_date": "1994-02-28",
+    "income_amt": 680000,
+    "addr": "Ramdas Peth, Nagpur",
+    "dist": "Nagpur",
+    "pin": "440010",
+    "phone_num": "9890456123",
+    "id": "REV-1030",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-9901",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nagpur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1030",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Meena Suresh Kulkarni",
+    "birth_date": "1987-10-15",
+    "income_amt": 390000,
+    "addr": "Gangapur Road, Nashik",
+    "dist": "Nashik",
+    "pin": "422013",
+    "phone_num": "9423112233",
+    "id": "REV-1031",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-8877",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nashik",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1031",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Dipak Tanaji Bhosale",
+    "birth_date": "1997-03-22",
+    "income_amt": 290000,
+    "addr": "MIDC Road, Ahmednagar",
+    "dist": "Ahilyanagar",
+    "pin": "414001",
+    "phone_num": "9822667788",
+    "id": "REV-1032",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-7766",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Ahilyanagar",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1032",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Shubham Sanjay Jadhav",
+    "birth_date": "2002-11-18",
+    "income_amt": 175000,
+    "addr": "Pachwad, Karad",
+    "dist": "Satara",
+    "pin": "415110",
+    "phone_num": "9850998877",
+    "id": "REV-1033",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-6655",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Satara",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1033",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Swati Eknath Pawar",
+    "birth_date": "1996-05-12",
+    "income_amt": 225000,
+    "addr": "Vishrambag, Sangli",
+    "dist": "Sangli",
+    "pin": "416415",
+    "phone_num": "9823445566",
+    "id": "REV-1034",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-5544",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Sangli",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1034",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Nilesh Dnyaneshwar Wagh",
+    "birth_date": "1991-08-08",
+    "income_amt": 480000,
+    "addr": "Civil Lines, Jalgaon",
+    "dist": "Jalgaon",
+    "pin": "425001",
+    "phone_num": "9422778899",
+    "id": "REV-1035",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-4411",
+      "cert_type": "INCOME",
+      "issue_date": "2026-01-10",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Jalgaon",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1035",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-06-15"
+    }
+  },
+  {
+    "citizen_name": "Rohan Salunkhe",
+    "birth_date": "1992-02-11",
+    "income_amt": 135000,
+    "addr": "Near Bus Stand, Satara",
+    "dist": "Satara",
+    "pin": "410001",
+    "phone_num": "9822000001",
+    "id": "REV-1036",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1036",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Satara",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1036",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Kunal Jadhav",
+    "birth_date": "1993-03-12",
+    "income_amt": 150000,
+    "addr": "Near Bus Stand, Kolhapur",
+    "dist": "Kolhapur",
+    "pin": "410002",
+    "phone_num": "9822000002",
+    "id": "REV-1037",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1037",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Kolhapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1037",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Manish Kulkarni",
+    "birth_date": "1994-04-13",
+    "income_amt": 165000,
+    "addr": "Near Bus Stand, Nagpur",
+    "dist": "Nagpur",
+    "pin": "410003",
+    "phone_num": "9822000003",
+    "id": "REV-1038",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1038",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nagpur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1038",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Neha Mane",
+    "birth_date": "1995-05-14",
+    "income_amt": 180000,
+    "addr": "Near Bus Stand, Nashik",
+    "dist": "Nashik",
+    "pin": "410004",
+    "phone_num": "9822000004",
+    "id": "REV-1039",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1039",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nashik",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1039",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Sonali Kadam",
+    "birth_date": "1996-06-15",
+    "income_amt": 195000,
+    "addr": "Near Bus Stand, Solapur",
+    "dist": "Solapur",
+    "pin": "410005",
+    "phone_num": "9822000005",
+    "id": "REV-1040",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1040",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Solapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1040",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Tushar Salunkhe",
+    "birth_date": "1997-07-16",
+    "income_amt": 210000,
+    "addr": "Near Bus Stand, Amravati",
+    "dist": "Amravati",
+    "pin": "410006",
+    "phone_num": "9822000006",
+    "id": "REV-1041",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1041",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Amravati",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1041",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Akshay Jadhav",
+    "birth_date": "1998-08-17",
+    "income_amt": 225000,
+    "addr": "Near Bus Stand, Jalgaon",
+    "dist": "Jalgaon",
+    "pin": "410007",
+    "phone_num": "9822000007",
+    "id": "REV-1042",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1042",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Jalgaon",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1042",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Pallavi Kulkarni",
+    "birth_date": "1999-01-18",
+    "income_amt": 240000,
+    "addr": "Near Bus Stand, Thane",
+    "dist": "Thane",
+    "pin": "410008",
+    "phone_num": "9822000008",
+    "id": "REV-1043",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1043",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Thane",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1043",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Sanjay Mane",
+    "birth_date": "1991-02-10",
+    "income_amt": 255000,
+    "addr": "Near Bus Stand, Sangli",
+    "dist": "Sangli",
+    "pin": "410009",
+    "phone_num": "9822000009",
+    "id": "REV-1044",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1044",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Sangli",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1044",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Vandana Kadam",
+    "birth_date": "1992-03-11",
+    "income_amt": 270000,
+    "addr": "Near Bus Stand, Pune",
+    "dist": "Pune",
+    "pin": "410010",
+    "phone_num": "9822000010",
+    "id": "REV-1045",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1045",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Pune",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1045",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Kiran Salunkhe",
+    "birth_date": "1993-04-12",
+    "income_amt": 285000,
+    "addr": "Near Bus Stand, Satara",
+    "dist": "Satara",
+    "pin": "410011",
+    "phone_num": "9822000011",
+    "id": "REV-1046",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1046",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Satara",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1046",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Pratik Jadhav",
+    "birth_date": "1994-05-13",
+    "income_amt": 300000,
+    "addr": "Near Bus Stand, Kolhapur",
+    "dist": "Kolhapur",
+    "pin": "410012",
+    "phone_num": "9822000012",
+    "id": "REV-1047",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1047",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Kolhapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1047",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Mayur Kulkarni",
+    "birth_date": "1995-06-14",
+    "income_amt": 315000,
+    "addr": "Near Bus Stand, Nagpur",
+    "dist": "Nagpur",
+    "pin": "410013",
+    "phone_num": "9822000013",
+    "id": "REV-1048",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1048",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nagpur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1048",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Kavita Mane",
+    "birth_date": "1996-07-15",
+    "income_amt": 330000,
+    "addr": "Near Bus Stand, Nashik",
+    "dist": "Nashik",
+    "pin": "410014",
+    "phone_num": "9822000014",
+    "id": "REV-1049",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1049",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nashik",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1049",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Abhishek Kadam",
+    "birth_date": "1997-08-16",
+    "income_amt": 345000,
+    "addr": "Near Bus Stand, Solapur",
+    "dist": "Solapur",
+    "pin": "410015",
+    "phone_num": "9822000015",
+    "id": "REV-1050",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1050",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Solapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1050",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Rohan Salunkhe",
+    "birth_date": "1998-01-17",
+    "income_amt": 360000,
+    "addr": "Near Bus Stand, Amravati",
+    "dist": "Amravati",
+    "pin": "410016",
+    "phone_num": "9822000016",
+    "id": "REV-1051",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1051",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Amravati",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1051",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Kunal Jadhav",
+    "birth_date": "1999-02-18",
+    "income_amt": 375000,
+    "addr": "Near Bus Stand, Jalgaon",
+    "dist": "Jalgaon",
+    "pin": "410017",
+    "phone_num": "9822000017",
+    "id": "REV-1052",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1052",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Jalgaon",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1052",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Manish Kulkarni",
+    "birth_date": "1991-03-10",
+    "income_amt": 390000,
+    "addr": "Near Bus Stand, Thane",
+    "dist": "Thane",
+    "pin": "410018",
+    "phone_num": "9822000018",
+    "id": "REV-1053",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1053",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Thane",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1053",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Neha Mane",
+    "birth_date": "1992-04-11",
+    "income_amt": 405000,
+    "addr": "Near Bus Stand, Sangli",
+    "dist": "Sangli",
+    "pin": "410019",
+    "phone_num": "9822000019",
+    "id": "REV-1054",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1054",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Sangli",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1054",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Sonali Kadam",
+    "birth_date": "1993-05-12",
+    "income_amt": 420000,
+    "addr": "Near Bus Stand, Pune",
+    "dist": "Pune",
+    "pin": "410020",
+    "phone_num": "9822000020",
+    "id": "REV-1055",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1055",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Pune",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1055",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Tushar Salunkhe",
+    "birth_date": "1994-06-13",
+    "income_amt": 435000,
+    "addr": "Near Bus Stand, Satara",
+    "dist": "Satara",
+    "pin": "410021",
+    "phone_num": "9822000021",
+    "id": "REV-1056",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1056",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Satara",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1056",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Akshay Jadhav",
+    "birth_date": "1995-07-14",
+    "income_amt": 450000,
+    "addr": "Near Bus Stand, Kolhapur",
+    "dist": "Kolhapur",
+    "pin": "410022",
+    "phone_num": "9822000022",
+    "id": "REV-1057",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1057",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Kolhapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1057",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Pallavi Kulkarni",
+    "birth_date": "1996-08-15",
+    "income_amt": 465000,
+    "addr": "Near Bus Stand, Nagpur",
+    "dist": "Nagpur",
+    "pin": "410023",
+    "phone_num": "9822000023",
+    "id": "REV-1058",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1058",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nagpur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1058",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Sanjay Mane",
+    "birth_date": "1997-01-16",
+    "income_amt": 480000,
+    "addr": "Near Bus Stand, Nashik",
+    "dist": "Nashik",
+    "pin": "410024",
+    "phone_num": "9822000024",
+    "id": "REV-1059",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1059",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Nashik",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1059",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  },
+  {
+    "citizen_name": "Vandana Kadam",
+    "birth_date": "1998-02-17",
+    "income_amt": 495000,
+    "addr": "Near Bus Stand, Solapur",
+    "dist": "Solapur",
+    "pin": "410025",
+    "phone_num": "9822000025",
+    "id": "REV-1060",
+    "certificate_details": {
+      "cert_number": "REV-INC-2026-1060",
+      "cert_type": "INCOME",
+      "issue_date": "2026-02-01",
+      "valid_thru": "2027-03-31",
+      "issuing_office": "Tahsildar Office, Solapur",
+      "is_valid": true
+    },
+    "domicile_details": {
+      "domicile_cert_number": "REV-DOM-2026-1060",
+      "state": "Maharashtra",
+      "is_domiciled": true,
+      "issue_date": "2025-05-10"
+    }
+  }
+]
