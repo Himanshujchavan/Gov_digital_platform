@@ -2,14 +2,12 @@ const { Controller, Post, Get, Body, Param, BadRequestException } = require('@ne
 const { AdapterService } = require('./adapter.service');
 const { ApiResponse } = require('@maha-interop/shared');
 
-@Controller('adapters')
 class AdapterController {
   constructor(adapterService) {
     this.adapterService = adapterService;
   }
 
-  @Post('transform')
-  transform(@Body() body) {
+  async transform(body) {
     const { department, data } = body;
     if (!department || !data) {
       throw new BadRequestException('Missing department or data in request body');
@@ -18,8 +16,7 @@ class AdapterController {
     return ApiResponse.success(result, `Data transformed from ${department} to canonical format`);
   }
 
-  @Post('reverse-transform')
-  reverseTransform(@Body() body) {
+  async reverseTransform(body) {
     const { department, data } = body;
     if (!department || !data) {
       throw new BadRequestException('Missing department or data in request body');
@@ -28,11 +25,16 @@ class AdapterController {
     return ApiResponse.success(result, `Data reverse-transformed from canonical to ${department} format`);
   }
 
-  @Get('schema/:department')
-  getSchema(@Param('department') department) {
+  async getSchema(department) {
     const schema = this.adapterService.getSchema(department);
     return ApiResponse.success(schema, `Schema mapping for ${department} retrieved`);
   }
 }
+
+// Apply NestJS decorators manually (functional style)
+Controller('adapters')(AdapterController);
+Post('transform')(AdapterController.prototype, 'transform', Object.getOwnPropertyDescriptor(AdapterController.prototype, 'transform'));
+Post('reverse-transform')(AdapterController.prototype, 'reverseTransform', Object.getOwnPropertyDescriptor(AdapterController.prototype, 'reverseTransform'));
+Get('schema/:department')(AdapterController.prototype, 'getSchema', Object.getOwnPropertyDescriptor(AdapterController.prototype, 'getSchema'));
 
 module.exports = { AdapterController };

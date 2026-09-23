@@ -38,8 +38,12 @@ class WorkflowController {
 
   @Put('review/:id')
   async review(@Param('id') id, @Body() body) {
+    const app = this.workflowService.getApplication(id);
+    if (!app) throw new NotFoundException('Application not found');
+    if (app.currentState !== 'OFFICER_REVIEW') {
+      throw new BadRequestException('Application not in OFFICER_REVIEW state');
+    }
     const { decision } = body; // 'APPROVE' or 'REJECT'
-    // In a real system, this would transition from OFFICER_REVIEW
     const state = decision === 'APPROVE' ? 'APPROVED' : 'REJECTED';
     await this.workflowService.transition(id, state);
     return ApiResponse.success({ appId: id, status: state }, 'Officer review processed');

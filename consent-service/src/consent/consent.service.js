@@ -15,10 +15,11 @@ class ConsentService {
     this.auditLog = []; // In production, this would be MongoDB
   }
 
-  async createRequest(citizenId, requesterDept, purpose, dataFields) {
+  async createRequest(appId, citizenId, requesterDept, purpose, dataFields) {
     const consentId = `CONS-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
     const request = {
       consentId,
+      appId,
       citizenId,
       requesterDept,
       purpose,

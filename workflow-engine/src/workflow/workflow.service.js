@@ -53,6 +53,7 @@ class WorkflowService {
         try {
           Logger.info(`Triggering Consent Request for App: ${appId}`, 'WorkflowService');
           await axios.post(`${this.services.consent}/consent/request`, {
+            appId,
             citizenId: app.citizenId,
             requesterDept: 'Gov-Platform',
             purpose: `Application for ${app.schemeId}`,
@@ -82,7 +83,9 @@ class WorkflowService {
         try {
           Logger.info(`Triggering Data Retrieval for App: ${appId}`, 'WorkflowService');
           const { data } = await axios.post(`${this.services.adapters}/adapters/transform`, {
-            masterId: app.masterId, department: 'revenue',
+            masterId: app.masterId,
+            department: 'revenue',
+            data: {}
           });
           app.data = data;
           await this.transition(appId, WorkflowStates.DATA_RETRIEVAL);

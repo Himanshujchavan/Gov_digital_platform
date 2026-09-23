@@ -10,11 +10,11 @@ class ConsentController {
 
   @Post('request')
   async request(@Body() body) {
-    const { citizenId, requesterDept, purpose, dataFields } = body;
-    if (!citizenId || !requesterDept || !purpose || !dataFields) {
+    const { appId, citizenId, requesterDept, purpose, dataFields } = body;
+    if (!appId || !citizenId || !requesterDept || !purpose || !dataFields) {
       throw new BadRequestException('Missing required fields for consent request');
     }
-    const result = await this.consentService.createRequest(citizenId, requesterDept, purpose, dataFields);
+    const result = await this.consentService.createRequest(appId, citizenId, requesterDept, purpose, dataFields);
     return ApiResponse.success(result, 'Consent request created successfully');
   }
 
