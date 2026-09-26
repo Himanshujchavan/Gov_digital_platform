@@ -1,8 +1,9 @@
-const { Controller, Post, Get, Put, Body, Param, NotFoundException } = require('@nestjs/common');
+const { Controller, Post, Get, Put, Body, Param, Query, NotFoundException, Dependencies } = require('@nestjs/common');
 const { WorkflowService } = require('./workflow.service');
 const { ApiResponse } = require('@maha-interop/shared');
 
 @Controller('workflow')
+@Dependencies(WorkflowService)
 class WorkflowController {
   constructor(workflowService) {
     this.workflowService = workflowService;
@@ -10,9 +11,30 @@ class WorkflowController {
 
   @Post('submit')
   async submit(@Body() body) {
-    const { citizenId, schemeId, requestedData } = body;
+    const citizenId = body.citizenId || 'citizen_rahul';
+    const schemeId = body.schemeId || 'SCHEME-001';
+    const requestedData = body.requestedData || body;
     const result = await this.workflowService.submitApplication(citizenId, schemeId, requestedData);
     return ApiResponse.success(result, 'Application submitted and workflow initiated');
+  }
+
+  @Get('pending-reviews')
+  async getPendingReviews(@Query('department') department) {
+    const list = this.workflowService.getPendingReviews(department);
+    return ApiResponse.success(list, 'Pending reviews retrieved');
+  }
+
+  @Get('applications')
+  async getApplications() {
+    const list = Array.from(this.workflowService.applications.values());
+    return ApiResponse.success(list, 'Applications retrieved');
+  }
+
+  @Get('applications/:id')
+  async getApplicationById(@Param('id') id) {
+    const app = this.workflowService.getApplication(id);
+    if (!app) throw new NotFoundException('Application not found');
+    return ApiResponse.success(app, 'Application retrieved');
   }
 
   @Get('status/:id')

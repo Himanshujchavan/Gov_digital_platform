@@ -1,3 +1,4 @@
+require('reflect-metadata');
 const { NestFactory } = require('@nestjs/core');
 const { WorkflowModule } = require('./app.module');
 const { Logger } = require('@maha-interop/shared');

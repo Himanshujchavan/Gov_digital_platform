@@ -4,7 +4,7 @@ const { EventTypes, Exchanges } = require('@maha-interop/shared');
 const axios = require('axios');
 const { Logger } = require('@maha-interop/shared');
 
-const WORKFLOW_URL = process.env.WORKFLOW_SERVICE_URL || 'http://workflow-engine:8006';
+const WORKFLOW_URL = process.env.WORKFLOW_SERVICE_URL || 'http://localhost:8006';
 
 @Injectable()
 class ConsentService {
@@ -13,6 +13,19 @@ class ConsentService {
     this.rabbitMQ = new RabbitMQClient();
     this.consents = new Map(); // In production, this would be PostgreSQL
     this.auditLog = []; // In production, this would be MongoDB
+
+    // Pre-seed a pending consent for demo user Rahul Sharma
+    this.consents.set('CONS-1001', {
+      consentId: 'CONS-1001',
+      appId: 'APP-1024',
+      citizenId: 'citizen_rahul',
+      requesterDept: 'Higher & Technical Education Department',
+      purpose: 'Verification of Annual Household Income for Rajarshi Shahu Maharaj Scholarship',
+      dataFields: ['annualIncome', 'casteCertificate', 'domicileStatus'],
+      status: 'PENDING',
+      createdAt: new Date(Date.now() - 3600000),
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+    });
   }
 
   async createRequest(appId, citizenId, requesterDept, purpose, dataFields) {

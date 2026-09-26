@@ -1,4 +1,4 @@
-﻿const amqp = require('amqplib');
+const amqp = require('amqplib');
 const { Logger } = require('./logger.util');
 
 /**
@@ -12,6 +12,7 @@ class RabbitMQClient {
     this.logger = new Logger('RabbitMQClient');
     this.isConnected = false;
     this.reconnectTimeout = 5000;
+    this.connectPromise = this.connect();
   }
 
   async connect() {
@@ -42,7 +43,15 @@ class RabbitMQClient {
     }
   }
 
+  async consume(exchange, routingKey, onMessage) {
+    const queueName = `q_${exchange}_${routingKey.replace(/[^a-zA-Z0-9]/g, '_')}`;
+    return this.subscribe(exchange, routingKey, queueName, onMessage);
+  }
+
   async publish(exchange, routingKey, message) {
+    if (!this.isConnected || !this.channel) {
+      if (this.connectPromise) await this.connectPromise;
+    }
     const payload = Buffer.from(JSON.stringify(message));
     if (!this.isConnected || !this.channel) {
       this.logger.warn(`RabbitMQ offline: event to ${exchange}/${routingKey} buffered/skipped.`);
@@ -60,6 +69,9 @@ class RabbitMQClient {
   }
 
   async subscribe(exchange, routingKey, queueName, onMessage) {
+    if (!this.isConnected || !this.channel) {
+      if (this.connectPromise) await this.connectPromise;
+    }
     if (!this.isConnected || !this.channel) {
       this.logger.warn(`RabbitMQ offline: cannot subscribe to ${exchange}/${routingKey} yet.`);
       return false;

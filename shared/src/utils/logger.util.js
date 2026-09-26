@@ -1,9 +1,25 @@
-﻿/**
+/**
  * Structured Logger for Microservices
  */
 class Logger {
   constructor(context = 'App') {
     this.context = context;
+  }
+
+  static info(message, context = 'App', meta = {}) {
+    new Logger(context).log(message, meta);
+  }
+
+  static warn(message, context = 'App', meta = {}) {
+    new Logger(context).warn(message, meta);
+  }
+
+  static error(message, context = 'App', meta = {}) {
+    new Logger(context).error(message, '', meta);
+  }
+
+  static debug(message, context = 'App', meta = {}) {
+    new Logger(context).debug(message, meta);
   }
 
   log(message, meta = {}) {

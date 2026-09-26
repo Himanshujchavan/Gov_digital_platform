@@ -24,5 +24,9 @@
     "start:gateway": "npm --workspace=api-gateway run start",
     "start:frontend": "npm --workspace=frontend run dev",
     "build:frontend": "npm --workspace=frontend run build"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.5.0",
+    "@swc/register": "0.1.10"
   }
 }

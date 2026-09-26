@@ -6,13 +6,13 @@ const { ApiResponse } = require('@maha-interop/shared');
 class ProxyService {
   constructor() {
     this.routes = {
-      'auth': 'http://auth-service:8001',
-      'departments': 'http://simulated-departments:8002',
-      'adapters': 'http://adapters:8003',
-      'mdm': 'http://mdm-service:8004',
-      'consent': 'http://consent-service:8005',
-      'workflow': 'http://workflow-engine:8006',
-      'audit': 'http://audit-service:8007',
+      'auth': process.env.AUTH_SERVICE_URL || 'http://localhost:8001',
+      'departments': process.env.DEPARTMENTS_SERVICE_URL || 'http://localhost:8002',
+      'adapters': process.env.ADAPTERS_SERVICE_URL || 'http://localhost:8003',
+      'mdm': process.env.MDM_SERVICE_URL || 'http://localhost:8004',
+      'consent': process.env.CONSENT_SERVICE_URL || 'http://localhost:8005',
+      'workflow': process.env.WORKFLOW_SERVICE_URL || 'http://localhost:8006',
+      'audit': process.env.AUDIT_SERVICE_URL || 'http://localhost:8007',
     };
   }
 

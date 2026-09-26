@@ -1,8 +1,9 @@
-const { Controller, Get, Post, Body, Query, Param } = require('@nestjs/common');
+const { Controller, Get, Post, Body, Query, Param, Dependencies } = require('@nestjs/common');
 const { AuditService } = require('./audit.service');
 const { ApiResponse } = require('@maha-interop/shared');
 
 @Controller('audit')
+@Dependencies(AuditService)
 class AuditController {
   constructor(auditService) {
     this.auditService = auditService;

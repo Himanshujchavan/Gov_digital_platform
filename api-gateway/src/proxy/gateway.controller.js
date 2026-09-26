@@ -1,16 +1,18 @@
-const { Controller, All, Req, Res, Body, Param } = require('@nestjs/common');
+const { Controller, All, Req, Res, Body, Param, Dependencies } = require('@nestjs/common');
 const { ProxyService } = require('./proxy.service');
 
 @Controller('api')
+@Dependencies(ProxyService)
 class GatewayController {
   constructor(proxyService) {
     this.proxyService = proxyService;
   }
 
-  @All(':service/*')
-  async handleRequest(@Req() req, @Res() res, @Param('service') service, @Param('0') path) {
-    // Extract the remaining path after the service name
-    const fullPath = req.url.replace(`/api/${service}`, '');
+  @All([':service', ':service/*'])
+  async handleRequest(@Req() req, @Res() res, @Param('service') service) {
+    // Extract the remaining path after the service name without query string
+    const urlWithoutQuery = req.url.split('?')[0];
+    const fullPath = urlWithoutQuery.replace(new RegExp(`^/api/${service}`), '') || '/';
     
     try {
       const result = await this.proxyService.forward(

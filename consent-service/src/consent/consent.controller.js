@@ -1,8 +1,9 @@
-const { Controller, Post, Put, Get, Body, Param, NotFoundException, BadRequestException, Query } = require('@nestjs/common');
+const { Controller, Post, Put, Get, Body, Param, NotFoundException, BadRequestException, Query, Dependencies } = require('@nestjs/common');
 const { ConsentService } = require('./consent.service');
 const { ApiResponse } = require('@maha-interop/shared');
 
 @Controller('consent')
+@Dependencies(ConsentService)
 class ConsentController {
   constructor(consentService) {
     this.consentService = consentService;

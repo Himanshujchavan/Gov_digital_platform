@@ -4,8 +4,8 @@
   "description": "Normalization layer for Maharashtra Gov Interop Platform",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js",
-    "dev": "nodemon src/main.js"
+    "start": "node -r @swc/register src/main.js",
+    "dev": "nodemon -r @swc/register src/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -13,6 +13,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@maha-interop/shared": "file:../shared",
     "@swc/register": "0.1.10",
+    "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1"
   }
 }

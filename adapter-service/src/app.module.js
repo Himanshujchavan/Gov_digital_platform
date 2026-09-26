@@ -2,9 +2,10 @@ const { Module } = require('@nestjs/common');
 const { AdapterController } = require('./adapter.controller');
 const { AdapterService } = require('./adapter.service');
 
-const AdapterModule = Module({
+@Module({
   controllers: [AdapterController],
   providers: [AdapterService],
-})(class {});
+})
+class AdapterModule {}
 
 module.exports = { AdapterModule };

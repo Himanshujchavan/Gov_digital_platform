@@ -4,8 +4,8 @@
   "description": "Immutable Audit Logging Service for Maharashtra Gov Interop",
   "main": "src/main.js",
   "scripts": {
-    "start": "node src/main.js",
-    "dev": "nodemon src/main.js"
+    "start": "node -r @swc/register src/main.js",
+    "dev": "nodemon -r @swc/register src/main.js"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

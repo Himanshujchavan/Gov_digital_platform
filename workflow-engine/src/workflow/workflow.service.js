@@ -9,11 +9,45 @@ class WorkflowService {
     this.rabbitMQ = new RabbitMQClient();
     this.applications = new Map(); // In production, this would be PostgreSQL
 
-    // Use env vars for direct service communication
+    // Pre-seed demo applications so officer queues and timeline pages work out of the box
+    this.applications.set('APP-1024', {
+      appId: 'APP-1024',
+      citizenId: 'citizen_rahul',
+      schemeId: 'SCHEME-001',
+      requestedData: {
+        citizenName: 'Rahul Sharma',
+        schemeName: 'Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna',
+        department: 'education',
+      },
+      masterId: 'MC-10024',
+      mdmConfidence: 0.965,
+      currentState: WorkflowStates.OFFICER_REVIEW,
+      history: [{ state: WorkflowStates.APPLICATION_RECEIVED, timestamp: new Date(Date.now() - 3600000) }],
+      data: { financial: { annualIncome: 150000 } },
+      status: 'PENDING_REVIEW'
+    });
+    this.applications.set('APP-1025', {
+      appId: 'APP-1025',
+      citizenId: 'citizen_priya',
+      schemeId: 'SCHEME-002',
+      requestedData: {
+        citizenName: 'Priya Patil',
+        schemeName: 'Post Matric Scholarship for OBC / EBC Students',
+        department: 'education',
+      },
+      masterId: 'MC-10028',
+      mdmConfidence: 0.982,
+      currentState: WorkflowStates.OFFICER_REVIEW,
+      history: [{ state: WorkflowStates.APPLICATION_RECEIVED, timestamp: new Date(Date.now() - 7200000) }],
+      data: { financial: { annualIncome: 180000 } },
+      status: 'PENDING_REVIEW'
+    });
+
+    // Use env vars for direct service communication with localhost fallbacks
     this.services = {
-      mdm: process.env.MDM_SERVICE_URL || 'http://mdm-service:8004',
-      adapters: process.env.ADAPTERS_SERVICE_URL || 'http://adapters:8003',
-      consent: process.env.CONSENT_SERVICE_URL || 'http://consent-service:8005',
+      mdm: process.env.MDM_SERVICE_URL || 'http://localhost:8004',
+      adapters: process.env.ADAPTERS_SERVICE_URL || 'http://localhost:8003',
+      consent: process.env.CONSENT_SERVICE_URL || 'http://localhost:8005',
     };
   }
 
@@ -114,8 +148,27 @@ class WorkflowService {
     return this.applications.get(appId);
   }
 
-  getPendingReviews() {
-    return Array.from(this.applications.values()).filter(a => a.currentState === 'OFFICER_REVIEW');
+  getPendingReviews(departmentFilter) {
+    const apps = Array.from(this.applications.values());
+    const list = apps.map(app => ({
+      id: app.appId,
+      citizenId: app.citizenId,
+      applicantName: app.requestedData?.citizenName || app.requestedData?.citizen?.name || (app.citizenId === 'citizen_rahul' ? 'Rahul Sharma' : 'Priya Patil'),
+      masterCitizenId: app.masterId || 'MC-10024',
+      schemeName: app.requestedData?.schemeName || 'Rajarshi Chhatrapati Shahu Maharaj Shikshan Shulk Shishyavrutti Yojna',
+      department: app.requestedData?.department || 'education',
+      retrievedIncome: app.data?.financial?.annualIncome || 180000,
+      eligibilityResult: 'PASS',
+      eligibilityReason: 'Income ≤ ₹8,00,000 ceiling',
+      matchConfidence: app.mdmConfidence || 0.982,
+      createdAt: (app.history && app.history[0]?.timestamp) ? new Date(app.history[0].timestamp).toISOString() : new Date().toISOString(),
+      currentState: app.currentState,
+    }));
+
+    if (departmentFilter && departmentFilter !== 'all') {
+      return list.filter(item => item.department.toLowerCase() === departmentFilter.toLowerCase());
+    }
+    return list;
   }
 
   // Public transition endpoint to allow the Event Bus to trigger state changes
