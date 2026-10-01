@@ -10,6 +10,7 @@ const {
 const { ApiResponse } = require('./interfaces/api-response.interface');
 const { Logger } = require('./utils/logger.util');
 const { RabbitMQClient } = require('./utils/rabbitmq.util');
+const { DbUtil } = require('./utils/db.util');
 
 module.exports = {
   Roles,
@@ -23,4 +24,5 @@ module.exports = {
   ApiResponse,
   Logger,
   RabbitMQClient,
+  DbUtil,
 };

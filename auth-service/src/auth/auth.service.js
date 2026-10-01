@@ -47,6 +47,10 @@ class AuthService {
       expiresIn: process.env.JWT_EXPIRES_IN || '1h',
     });
 
+    const expiresInSeconds = process.env.JWT_EXPIRES_IN
+      ? parseInt(process.env.JWT_EXPIRES_IN) || 3600
+      : 3600;
+
     const refreshToken = this.jwtService.sign(
       { sub: user.id, type: 'refresh' },
       { expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN || '7d' }
@@ -56,7 +60,7 @@ class AuthService {
       accessToken,
       refreshToken,
       tokenType: 'Bearer',
-      expiresIn: 3600,
+      expiresIn: expiresInSeconds,
       user: {
         id: user.id,
         username: user.username,
@@ -121,10 +125,14 @@ class AuthService {
         expiresIn: process.env.JWT_EXPIRES_IN || '1h',
       });
 
+      const expiresInSeconds = process.env.JWT_EXPIRES_IN
+        ? parseInt(process.env.JWT_EXPIRES_IN) || 3600
+        : 3600;
+
       return {
         accessToken: newAccessToken,
         tokenType: 'Bearer',
-        expiresIn: 3600,
+        expiresIn: expiresInSeconds,
       };
     } catch (err) {
       throw new UnauthorizedException('Invalid or expired refresh token');

@@ -1,31 +1,33 @@
-const { Injectable } = require('@nestjs/common');
-const { RabbitMQClient } = require('@maha-interop/shared');
-const { EventTypes, Exchanges } = require('@maha-interop/shared');
+const { Injectable, UnauthorizedException, BadRequestException, Dependencies } = require('@nestjs/common');
+const { RabbitMQClient, DbUtil, EventTypes, Exchanges, Logger } = require('@maha-interop/shared');
 const axios = require('axios');
-const { Logger } = require('@maha-interop/shared');
-
-const WORKFLOW_URL = process.env.WORKFLOW_SERVICE_URL || 'http://localhost:8006';
 
 @Injectable()
 class ConsentService {
-
   constructor() {
     this.rabbitMQ = new RabbitMQClient();
-    this.consents = new Map(); // In production, this would be PostgreSQL
-    this.auditLog = []; // In production, this would be MongoDB
+    this.db = new DbUtil();
+    this.logger = new Logger('ConsentService');
 
-    // Pre-seed a pending consent for demo user Rahul Sharma
-    this.consents.set('CONS-1001', {
-      consentId: 'CONS-1001',
-      appId: 'APP-1024',
-      citizenId: 'citizen_rahul',
-      requesterDept: 'Higher & Technical Education Department',
-      purpose: 'Verification of Annual Household Income for Rajarshi Shahu Maharaj Scholarship',
-      dataFields: ['annualIncome', 'casteCertificate', 'domicileStatus'],
-      status: 'PENDING',
-      createdAt: new Date(Date.now() - 3600000),
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    });
+    // Initialize subscriptions
+    this.initSubscriptions();
+  }
+
+  async initSubscriptions() {
+    try {
+      await this.rabbitMQ.consume(Exchanges.CONSENT, 'consent.request', async (data) => {
+        this.logger.log(`Received consent request event: ${JSON.stringify(data)}`, 'ConsentService');
+        await this.createRequest(
+          data.appId,
+          data.citizenId,
+          data.requesterDept,
+          data.purpose,
+          data.dataFields
+        );
+      });
+    } catch (e) {
+      this.logger.error(`Failed to initialize consent subscriptions: ${e.message}`, 'ConsentService');
+    }
   }
 
   async createRequest(appId, citizenId, requesterDept, purpose, dataFields) {
@@ -39,84 +41,101 @@ class ConsentService {
       dataFields,
       status: 'PENDING',
       createdAt: new Date(),
-      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days TTL
+      expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     };
-    
-    this.consents.set(consentId, request);
-    
-    // Publish event to RabbitMQ
-    await this.rabbitMQ.publish(
-      Exchanges.CONSENT, 
-      'consent.created', 
-      { consentId, citizenId, purpose }
-    );
-    
-    return request;
+
+    try {
+      await this.db.query(
+        `INSERT INTO consents (consent_id, app_id, citizen_id, requester_dept, purpose, data_fields, status, created_at, expires_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        [consentId, appId, citizenId, requesterDept, purpose, JSON.stringify(dataFields), 'PENDING', request.createdAt, request.expiresAt]
+      );
+
+      await this.rabbitMQ.publish(
+        Exchanges.CONSENT,
+        'consent.created',
+        { consentId, citizenId, purpose }
+      );
+
+      return request;
+    } catch (e) {
+      this.logger.error(`Error creating consent request in DB: ${e.message}`, 'ConsentService');
+      throw e;
+    }
   }
 
   async respond(consentId, decision, citizenSignature) {
-    const consent = this.consents.get(consentId);
+    const result = await this.db.query('SELECT * FROM consents WHERE consent_id = $1', [consentId]);
+    const consent = result.rows[0];
     if (!consent) throw new Error('Consent request not found');
 
-    consent.status = decision === 'APPROVE' ? 'GRANTED' : 'REJECTED';
-    consent.respondedAt = new Date();
-    consent.signature = citizenSignature;
+    const status = decision === 'APPROVE' ? 'GRANTED' : 'REJECTED';
+    const respondedAt = new Date();
 
-    this.consents.set(consentId, consent);
+    try {
+      await this.db.query(
+        `UPDATE consents SET status = $1, responded_at = $2, signature = $3 WHERE consent_id = $4`,
+        [status, respondedAt, citizenSignature, consentId]
+      );
 
-    if (decision === 'APPROVE') {
-      try {
-        await axios.put(`${WORKFLOW_URL}/workflow/transition/${consent.appId || consentId}`, {
+      if (decision === 'APPROVE') {
+        await this.rabbitMQ.publish(Exchanges.WORKFLOW, 'workflow.transition', {
+          appId: consent.app_id,
           newState: 'CONSENT_GRANTED',
+          event: EventTypes.CONSENT_APPROVED
         });
-      } catch (e) {
-        Logger.error(`Failed to notify workflow of consent approval: ${e.message}`, 'ConsentService');
       }
+
+      const event = decision === 'APPROVE' ? 'consent.approved' : 'consent.rejected';
+      await this.rabbitMQ.publish(
+        Exchanges.CONSENT,
+        event,
+        { consentId, citizenId: consent.citizen_id, status: status }
+      );
+
+      return { ...consent, status, respondedAt };
+    } catch (e) {
+      this.logger.error(`Error updating consent response in DB: ${e.message}`, 'ConsentService');
+      throw e;
     }
-
-    // Publish event
-    const event = decision === 'APPROVE' ? 'consent.approved' : 'consent.rejected';
-    await this.rabbitMQ.publish(
-      Exchanges.CONSENT,
-      event,
-      { consentId, citizenId: consent.citizenId, status: consent.status }
-    );
-
-    return consent;
   }
 
   async revoke(consentId) {
-    const consent = this.consents.get(consentId);
+    const result = await this.db.query('SELECT * FROM consents WHERE consent_id = $1', [consentId]);
+    const consent = result.rows[0];
     if (!consent) throw new Error('Consent not found');
-    
-    consent.status = 'REVOKED';
-    consent.revokedAt = new Date();
-    
-    this.consents.set(consentId, consent);
-    
-    await this.rabbitMQ.publish(
-      Exchanges.CONSENT, 
-      'consent.revoked', 
-      { consentId, citizenId: consent.citizenId }
-    );
-    
-    return consent;
+
+    try {
+      await this.db.query(
+        `UPDATE consents SET status = 'REVOKED', revoked_at = NOW() WHERE consent_id = $1`,
+        [consentId]
+      );
+
+      await this.rabbitMQ.publish(
+        Exchanges.CONSENT,
+        'consent.revoked',
+        { consentId, citizenId: consent.citizen_id }
+      );
+
+      return { ...consent, status: 'REVOKED' };
+    } catch (e) {
+      this.logger.error(`Error revoking consent in DB: ${e.message}`, 'ConsentService');
+      throw e;
+    }
   }
 
   async validate(citizenId, deptId, dataField) {
-    const activeConsent = Array.from(this.consents.values()).find(c => 
-      c.citizenId === citizenId && 
-      c.requesterDept === deptId && 
-      c.status === 'GRANTED' && 
-      c.expiresAt > new Date() &&
-      c.dataFields.includes(dataField)
+    const result = await this.db.query(
+      `SELECT * FROM consents WHERE citizen_id = $1 AND requester_dept = $2 AND status = 'GRANTED' AND expires_at > NOW() AND data_fields @> $3`,
+      [citizenId, deptId, JSON.stringify([dataField])]
     );
-    
-    return !!activeConsent;
+    return result.rowCount > 0;
   }
 
   getHistory(citizenId) {
-    return Array.from(this.consents.values()).filter(c => c.citizenId === citizenId);
+    // This needs to be async now
+    return this.db.query('SELECT * FROM consents WHERE citizen_id = $1', [citizenId])
+      .then(res => res.rows);
   }
 }
 

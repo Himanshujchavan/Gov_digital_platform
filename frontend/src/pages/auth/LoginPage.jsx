@@ -23,8 +23,7 @@ export function LoginPage() {
 
     try {
       // Calls auth service (direct or via gateway)
-      const res = await authApi.login({ username, password });
-      const authData = res.data;
+      const authData = await authApi.login({ username, password });
 
       setAuth({
         user: authData.user,

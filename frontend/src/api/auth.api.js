@@ -49,19 +49,15 @@ export const authApi = {
     try {
       // First try live backend API (Gateway :8000 or Auth Service :8001)
       const res = await apiClient.post('/auth/login', credentials);
-      return res;
+      return res.data.data; // Return the actual payload (user, tokens)
     } catch (apiErr) {
       // If backend is not running yet, provide seamless demo fallback for test users
       const user = DEMO_USERS[credentials.username];
       if (user && credentials.password === 'password123') {
         return {
-          success: true,
-          message: 'Authenticated via Demo Mode',
-          data: {
-            user,
-            accessToken: `demo-jwt-token-for-${user.username}`,
-            refreshToken: `demo-refresh-token-for-${user.username}`,
-          },
+          user,
+          accessToken: `demo-jwt-token-for-${user.username}`,
+          refreshToken: `demo-refresh-token-for-${user.username}`,
         };
       }
       throw apiErr;
@@ -70,16 +66,13 @@ export const authApi = {
 
   register: async (userData) => {
     try {
-      return await apiClient.post('/auth/register', userData);
+      const res = await apiClient.post('/auth/register', userData);
+      return res.data.data; // Return the actual payload
     } catch (e) {
       // Demo fallback
       return {
-        success: true,
-        message: 'Registered in demo mode',
-        data: {
-          id: `usr-${Date.now().toString().slice(-4)}`,
-          ...userData,
-        },
+        id: `usr-${Date.now().toString().slice(-4)}`,
+        ...userData,
       };
     }
   },

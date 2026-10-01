@@ -1,10 +1,11 @@
-﻿{
+{
   "name": "@maha-interop/shared",
   "version": "1.0.0",
   "description": "Shared constants, schemas, and utilities for Maharashtra Interop Platform",
   "main": "src/index.js",
   "type": "commonjs",
   "dependencies": {
-    "amqplib": "^0.10.4"
+    "amqplib": "^0.10.4",
+    "pg": "^8.23.0"
   }
 }

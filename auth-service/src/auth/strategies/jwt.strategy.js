@@ -10,7 +10,9 @@ class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET || 'maha_gov_interop_super_secret_jwt_key_2026',
+      secretOrKey: process.env.JWT_SECRET || (() => {
+        throw new Error('FATAL ERROR: JWT_SECRET environment variable is not defined. The application cannot start without a secure secret.');
+      })(),
     });
     this.usersService = usersService;
   }

@@ -14,7 +14,7 @@ export const apiClient = axios.create({
 // Request Interceptor: Attach JWT
 apiClient.interceptors.request.use(
   (config) => {
-    const token = useAuthStore.getState().token;
+    const token = useAuthStore.getState().accessToken;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -75,10 +75,12 @@ apiClient.interceptors.response.use(
 
       try {
         const refreshResponse = await axios.post(`${BASE_URL}/auth/refresh`, {
-          refreshToken,
+          refreshToken: refreshToken,
         });
 
-        const newAccessToken = refreshResponse.data?.data?.accessToken;
+        const responseData = refreshResponse.data;
+        const newAccessToken = responseData?.data?.accessToken || responseData?.accessToken;
+
         if (newAccessToken) {
           useAuthStore.getState().setAuth({
             user: useAuthStore.getState().user,

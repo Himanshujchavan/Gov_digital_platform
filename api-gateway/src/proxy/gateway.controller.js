@@ -12,8 +12,14 @@ class GatewayController {
   async handleRequest(@Req() req, @Res() res, @Param('service') service) {
     // Extract the remaining path after the service name without query string
     const urlWithoutQuery = req.url.split('?')[0];
-    const fullPath = urlWithoutQuery.replace(new RegExp(`^/api/${service}`), '') || '/';
-    
+    let fullPath = urlWithoutQuery.replace(/^\/api/, '') || '/';
+
+    // Ensure we don't have double slashes and that it starts with /
+    fullPath = fullPath.replace(/\/+/g, '/');
+    if (!fullPath.startsWith('/')) {
+      fullPath = '/' + fullPath;
+    }
+
     try {
       const result = await this.proxyService.forward(
         service,

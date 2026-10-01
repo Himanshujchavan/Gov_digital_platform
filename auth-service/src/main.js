@@ -3,10 +3,13 @@ const { NestFactory } = require('@nestjs/core');
 const { SwaggerModule, DocumentBuilder } = require('@nestjs/swagger');
 const { AppModule } = require('./app.module');
 const { Logger } = require('@maha-interop/shared');
+const { GlobalExceptionFilter } = require('./filters/global-exception.filter');
 
 async function bootstrap() {
   const logger = new Logger('AuthService');
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   app.enableCors({
     origin: '*',
