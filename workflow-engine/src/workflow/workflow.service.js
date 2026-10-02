@@ -6,9 +6,60 @@ class WorkflowService {
     this.rabbitMQ = new RabbitMQClient();
     this.db = new DbUtil();
     this.logger = new Logger('WorkflowService');
+    this.allowedTransitions = {
+      [WorkflowStates.APPLICATION_RECEIVED]: [WorkflowStates.CONSENT_REQUESTED],
+      [WorkflowStates.CONSENT_REQUESTED]: [WorkflowStates.CONSENT_GRANTED],
+      [WorkflowStates.CONSENT_GRANTED]: [WorkflowStates.MDM_RESOLUTION],
+      [WorkflowStates.MDM_RESOLUTION]: [WorkflowStates.DATA_RETRIEVAL],
+      [WorkflowStates.DATA_RETRIEVAL]: [WorkflowStates.OFFICER_REVIEW],
+      [WorkflowStates.OFFICER_REVIEW]: [WorkflowStates.APPROVED, WorkflowStates.REJECTED],
+      [WorkflowStates.APPROVED]: [WorkflowStates.CITIZEN_NOTIFIED],
+      [WorkflowStates.REJECTED]: [WorkflowStates.CITIZEN_NOTIFIED],
+      [WorkflowStates.CITIZEN_NOTIFIED]: [],
+    };
 
     // Initialize subscriptions
     this.initSubscriptions();
+  }
+
+  isTransitionAllowed(currentState, newState) {
+    if (currentState === newState) {
+      return true;
+    }
+    const allowed = this.allowedTransitions[currentState] || [];
+    return allowed.includes(newState);
+  }
+
+  extractRequestedFields(requestedData) {
+    if (Array.isArray(requestedData)) {
+      return requestedData.filter((field) => typeof field === 'string' && field.trim().length > 0);
+    }
+    if (!requestedData || typeof requestedData !== 'object') {
+      return [];
+    }
+    if (Array.isArray(requestedData.dataFields)) {
+      return requestedData.dataFields.filter((field) => typeof field === 'string' && field.trim().length > 0);
+    }
+    return Object.keys(requestedData).filter((key) => key !== 'citizen');
+  }
+
+  async validateConsentBeforeGrant(app) {
+    const requestedFields = this.extractRequestedFields(app.requested_data);
+    const consentServiceUrl = process.env.CONSENT_SERVICE_URL || 'http://localhost:8005';
+    const purpose = `Application for ${app.scheme_id}`;
+    const response = await axios.get(`${consentServiceUrl}/consent/validate-application/${app.app_id}`, {
+      timeout: 5000,
+      params: {
+        purpose,
+        requesterDept: 'Gov-Platform',
+        requestedFields: requestedFields.join(','),
+      },
+    });
+
+    const isValid = response?.data?.data?.isValid;
+    if (!isValid) {
+      throw new Error('Cannot grant consent state transition without active valid consent');
+    }
   }
 
   async initSubscriptions() {
@@ -68,8 +119,18 @@ class WorkflowService {
     const result = await this.db.query('SELECT * FROM applications WHERE app_id = $1', [appId]);
     const app = result.rows[0];
     if (!app) throw new Error('Application not found');
+    if (!this.isTransitionAllowed(app.current_state, newState)) {
+      throw new Error(`Invalid transition from ${app.current_state} to ${newState}`);
+    }
+    if (app.current_state === newState) {
+      return app;
+    }
 
     try {
+      if (newState === WorkflowStates.CONSENT_GRANTED) {
+        await this.validateConsentBeforeGrant(app);
+      }
+
       await this.db.query(
         `UPDATE applications SET current_state = $1 WHERE app_id = $2`,
         [newState, appId]
@@ -182,6 +243,11 @@ class WorkflowService {
   async getApplication(appId) {
     const result = await this.db.query('SELECT * FROM applications WHERE app_id = $1', [appId]);
     return result.rows[0];
+  }
+
+  async getApplications() {
+    const result = await this.db.query('SELECT * FROM applications ORDER BY app_id DESC');
+    return result.rows;
   }
 
   async getPendingReviews(departmentFilter) {

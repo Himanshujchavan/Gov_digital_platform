@@ -1,5 +1,6 @@
 const { Controller, All, Req, Res, Body, Param, Dependencies } = require('@nestjs/common');
 const { ProxyService } = require('./proxy.service');
+const { ApiResponse } = require('@maha-interop/shared');
 
 @Controller('api')
 @Dependencies(ProxyService)
