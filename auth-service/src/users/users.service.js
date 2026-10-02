@@ -34,8 +34,15 @@ class UsersService {
   }
 
   async _seedUsers() {
-    const saltRounds = 10;
-    const defaultPasswordHash = await bcrypt.hash('password123', saltRounds);
+    // SECURITY: Never seed default users in production
+    if (process.env.NODE_ENV === 'production') {
+      this.logger.log('Skipping seed data in production environment', 'UsersService');
+      return;
+    }
+
+    const seedPassword = process.env.SEED_DEFAULT_PASSWORD || 'Dev_P@ssw0rd_2026!';
+    const saltRounds = parseInt(process.env.BCRYPT_ROUNDS) || 12;
+    const defaultPasswordHash = await bcrypt.hash(seedPassword, saltRounds);
 
     const seedData = [
       { id: 'usr-cit-001', username: 'citizen_rahul', fullName: 'Rahul Sharma', email: 'rahul.sharma@example.gov.in', role: Roles.CITIZEN, department: null },
@@ -96,7 +103,7 @@ class UsersService {
       throw new Error(`Username ${username} is already taken`);
     }
 
-    const saltRounds = 10;
+    const saltRounds = parseInt(process.env.BCRYPT_ROUNDS) || 12;
     const passwordHash = await bcrypt.hash(password, saltRounds);
     const id = `usr-${uuidv4().substring(0, 8)}`;
 

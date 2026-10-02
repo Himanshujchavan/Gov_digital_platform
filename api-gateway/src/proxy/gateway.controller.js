@@ -10,11 +10,11 @@ class GatewayController {
 
   @All([':service', ':service/*'])
   async handleRequest(@Req() req, @Res() res, @Param('service') service) {
-    // Extract the remaining path after the service name without query string
     const urlWithoutQuery = req.url.split('?')[0];
-    let fullPath = urlWithoutQuery.replace(/^\/api/, '') || '/';
+    // Preserve the service prefix for upstream controllers, e.g. /api/auth/login -> /auth/login.
+    let fullPath = urlWithoutQuery.replace(/^\/api(\/|$)/, '/') || '/';
 
-    // Ensure we don't have double slashes and that it starts with /
+    // Ensure it starts with / and no double slashes
     fullPath = fullPath.replace(/\/+/g, '/');
     if (!fullPath.startsWith('/')) {
       fullPath = '/' + fullPath;
@@ -33,10 +33,9 @@ class GatewayController {
       const status = result.status || 200;
       return res.status(status).json(result.data || result);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        message: `Gateway Error: ${error.message}`
-      });
+      return res.status(500).json(
+        ApiResponse.error(`Gateway Error: ${error.message}`, 500)
+      );
     }
   }
 }

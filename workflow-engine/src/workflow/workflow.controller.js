@@ -44,25 +44,25 @@ class WorkflowController {
     return ApiResponse.success(app, 'Application status retrieved');
   }
 
-  @Get('timeline/:id')
+  @Get(['timeline/:id', 'applications/:id/timeline'])
   async getTimeline(@Param('id') id) {
-    const app = this.workflowService.getApplication(id);
+    const app = await this.workflowService.getApplication(id);
     if (!app) throw new NotFoundException('Application not found');
-    return ApiResponse.success(app.history, 'Workflow timeline retrieved');
+    return ApiResponse.success(app.history || [], 'Workflow timeline retrieved');
   }
 
-  @Put('transition/:id')
+  @Put(['transition/:id', 'applications/:id/transition'])
   async transition(@Param('id') id, @Body() body) {
     const { newState } = body;
     await this.workflowService.transition(id, newState);
     return ApiResponse.success({ appId: id, newState }, 'Workflow state transitioned successfully');
   }
 
-  @Put('review/:id')
+  @Put(['review/:id', 'applications/:id/review'])
   async review(@Param('id') id, @Body() body) {
-    const app = this.workflowService.getApplication(id);
+    const app = await this.workflowService.getApplication(id);
     if (!app) throw new NotFoundException('Application not found');
-    if (app.currentState !== 'OFFICER_REVIEW') {
+    if (app.current_state !== 'OFFICER_REVIEW' && app.currentState !== 'OFFICER_REVIEW') {
       throw new BadRequestException('Application not in OFFICER_REVIEW state');
     }
     const { decision } = body; // 'APPROVE' or 'REJECT'

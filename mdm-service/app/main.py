@@ -37,15 +37,32 @@ class ResolveResponse(BaseModel):
 # --- Endpoints ---
 @app.post("/mdm/resolve", response_model=ResolveResponse)
 async def resolve(req: ResolveRequest, db: Session = Depends(get_db)):
-    # 1. Candidate Selection (Blocking)
-    # In a real system with millions, we would use ElasticSearch or Postgres pg_trgm for candidate selection
-    candidates = db.query(MasterCitizen).filter(
-        (MasterCitizen.dob == req.dob) | (MasterCitizen.phone == req.phone)
-    ).all()
-    
+    # 1. Candidate Selection (Multi-Stage Blocking with Upper Bound to prevent memory exhaustion)
+    # Stage A: High-precision match on phone or exact DOB + Name prefix
+    query_filters = []
+    if req.phone:
+        query_filters.append(MasterCitizen.phone == req.phone)
+    if req.dob:
+        query_filters.append(MasterCitizen.dob == req.dob)
+
+    candidates = []
+    if query_filters:
+        from sqlalchemy import or_
+        candidates = db.query(MasterCitizen).filter(
+            or_(*query_filters)
+        ).limit(50).all()
+
+    # Stage B: Fallback if no direct candidates found, match by first token of name
+    if not candidates and req.name:
+        first_name = req.name.strip().split()[0]
+        if len(first_name) >= 3:
+            candidates = db.query(MasterCitizen).filter(
+                MasterCitizen.name.ilike(f"{first_name}%")
+            ).limit(25).all()
+
     best_score = 0.0
     best_citizen = None
-    
+
     for citizen in candidates:
         score = resolver.calculate_total_score(req, citizen)
         if score > best_score:

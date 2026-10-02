@@ -1,7 +1,6 @@
 FROM node:18-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --production
 COPY . .
+RUN cp .swcrc api-gateway/.swcrc && npm install
 EXPOSE 8000
-CMD ["npm", "start"]
+CMD ["npm", "--workspace=api-gateway", "run", "start"]

@@ -61,10 +61,12 @@ services:
       dockerfile: auth-service/Dockerfile
     container_name: maha-auth-service
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - PORT=8001
-      - POSTGRES_HOST=postgres
+      - POSTGRES_HOST=host.docker.internal
       - POSTGRES_PORT=5432
       - POSTGRES_USER=${POSTGRES_USER:-postgres}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}

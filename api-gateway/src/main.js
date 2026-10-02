@@ -7,9 +7,14 @@ const { Logger } = require('@maha-interop/shared');
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule);
   
-  // Enable CORS for frontend
+  // Load allowed origins from env (comma‑separated). Fallback to localhost dev origin.
+  const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+    : ['http://localhost:3000'];
+
+  // Enable CORS with whitelist and credentials
   app.enableCors({
-    origin: true,
+    origin: allowedOrigins,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });

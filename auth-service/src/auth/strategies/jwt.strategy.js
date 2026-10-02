@@ -1,4 +1,4 @@
-﻿const { Injectable, UnauthorizedException, Dependencies } = require('@nestjs/common');
+const { Injectable, UnauthorizedException, Dependencies } = require('@nestjs/common');
 const { PassportStrategy } = require('@nestjs/passport');
 const { ExtractJwt, Strategy } = require('passport-jwt');
 const { UsersService } = require('../../users/users.service');
@@ -10,8 +10,9 @@ class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET || (() => {
-        throw new Error('FATAL ERROR: JWT_SECRET environment variable is not defined. The application cannot start without a secure secret.');
+      // Use asymmetric RSA public key for verification
+      secretOrKey: process.env.JWT_PUBLIC_KEY || (() => {
+        throw new Error('FATAL ERROR: JWT_PUBLIC_KEY environment variable is not defined.');
       })(),
     });
     this.usersService = usersService;

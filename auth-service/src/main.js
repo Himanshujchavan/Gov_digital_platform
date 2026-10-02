@@ -1,4 +1,5 @@
-﻿require('dotenv').config();
+﻿const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 const { NestFactory } = require('@nestjs/core');
 const { SwaggerModule, DocumentBuilder } = require('@nestjs/swagger');
 const { AppModule } = require('./app.module');

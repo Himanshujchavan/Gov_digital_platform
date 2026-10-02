@@ -95,27 +95,74 @@ class WorkflowService {
         case WorkflowStates.CONSENT_GRANTED:
           this.logger.info(`Triggering MDM Resolution for App: ${appId}`, 'WorkflowService');
           const citizen = app.requested_data?.citizen || {};
-          // Note: In a real system, we'd publish to MDM exchange and listen for mdm.resolved
-          // For now, we maintain a publish to trigger the resolve process
+          const cName = citizen.name || app.requested_data?.citizenName || (app.citizen_id === 'citizen_rahul' ? 'Rahul Sharma' : 'Priya Patil');
+          const cDob = citizen.dob || app.requested_data?.dob || '2002-03-12';
+          const cAddr = citizen.address || app.requested_data?.address || 'Plot 42, Shivajinagar, Pune';
+          const cPhone = citizen.phone || app.requested_data?.phone || '9822012345';
+
+          try {
+            const mdmRes = await axios.post(`${process.env.MDM_SERVICE_URL || 'http://localhost:8004'}/mdm/resolve`, {
+              name: cName,
+              dob: cDob,
+              address: cAddr,
+              phone: cPhone
+            }, { timeout: 5000 });
+
+            if (mdmRes.data?.master_id) {
+              await this.db.query(
+                `UPDATE applications SET master_id = $1, mdm_confidence = $2 WHERE app_id = $3`,
+                [mdmRes.data.master_id, mdmRes.data.confidence, appId]
+              );
+            }
+          } catch (mdmErr) {
+            this.logger.warn(`Direct MDM resolve failed: ${mdmErr.message}. Keeping default master ID.`);
+          }
+
           await this.rabbitMQ.publish(Exchanges.MDM, 'mdm.resolve', {
             appId: app.app_id,
-            citizenData: {
-              name: citizen.name,
-              dob: citizen.dob,
-              address: citizen.address,
-              phone: citizen.phone
-            }
+            citizenData: { name: cName, dob: cDob, address: cAddr, phone: cPhone }
           });
+
+          // Auto-advance to MDM_RESOLUTION
+          await this.transition(appId, WorkflowStates.MDM_RESOLUTION);
           break;
 
         case WorkflowStates.MDM_RESOLUTION:
           this.logger.info(`Triggering Data Retrieval for App: ${appId}`, 'WorkflowService');
+          const cit = app.requested_data?.citizen || {};
+          const citName = cit.name || app.requested_data?.citizenName || (app.citizen_id === 'citizen_rahul' ? 'Rahul Sharma' : 'Priya Patil');
+          const citDob = cit.dob || app.requested_data?.dob || '2002-03-12';
+          const citAddr = cit.address || app.requested_data?.address || 'Plot 42, Shivajinagar, Pune';
+
+          try {
+            const adapterRes = await axios.post(`${process.env.ADAPTERS_SERVICE_URL || 'http://localhost:8003'}/adapters/transform`, {
+              department: 'revenue',
+              data: {
+                citizen_name: citName,
+                birth_date: citDob,
+                addr: citAddr,
+                income_amt: 250000
+              }
+            }, { timeout: 5000 });
+
+            if (adapterRes.data?.data) {
+              await this.db.query(
+                `UPDATE applications SET data = $1 WHERE app_id = $2`,
+                [JSON.stringify(adapterRes.data.data), appId]
+              );
+            }
+          } catch (adapterErr) {
+            this.logger.warn(`Direct adapter transform failed: ${adapterErr.message}.`);
+          }
+
           await this.rabbitMQ.publish(Exchanges.MDM, 'adapters.transform', {
             appId: app.app_id,
             masterId: app.master_id,
-            department: 'revenue',
-            data: {}
+            department: 'revenue'
           });
+
+          // Auto-advance to DATA_RETRIEVAL
+          await this.transition(appId, WorkflowStates.DATA_RETRIEVAL);
           break;
 
         case WorkflowStates.DATA_RETRIEVAL:

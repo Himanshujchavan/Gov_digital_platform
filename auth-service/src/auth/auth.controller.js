@@ -1,4 +1,4 @@
-﻿const {
+const {
   Controller,
   Post,
   Get,
@@ -9,6 +9,7 @@
   HttpStatus,
   Dependencies,
 } = require('@nestjs/common');
+const { Throttle, ThrottlerGuard } = require('@nestjs/throttler');
 const { AuthService } = require('./auth.service');
 const { UsersService } = require('../users/users.service');
 const { JwtAuthGuard } = require('./guards/jwt-auth.guard');
@@ -26,6 +27,8 @@ class AuthController {
 
   @Post('login')
   @HttpCode(HttpStatus.OK)
+  @UseGuards(ThrottlerGuard)
+  @Throttle(parseInt(process.env.RATE_LIMIT_AUTH) || 5, parseInt(process.env.RATE_LIMIT_AUTH_TTL) || 60)
   async login(@Body() body) {
     const result = await this.authService.login(body);
     return ApiResponse.success(result, 'Authentication successful');
@@ -33,6 +36,8 @@ class AuthController {
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
+  @UseGuards(ThrottlerGuard)
+  @Throttle(parseInt(process.env.RATE_LIMIT_AUTH) || 5, parseInt(process.env.RATE_LIMIT_AUTH_TTL) || 60)
   async register(@Body() body) {
     const result = await this.authService.register(body);
     return ApiResponse.success(result, 'User registered successfully');
@@ -40,6 +45,8 @@ class AuthController {
 
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
+  @UseGuards(ThrottlerGuard)
+  @Throttle(parseInt(process.env.RATE_LIMIT_AUTH) || 5, parseInt(process.env.RATE_LIMIT_AUTH_TTL) || 60)
   async refresh(@Body() body) {
     const result = await this.authService.refresh(body.refreshToken);
     return ApiResponse.success(result, 'Token refreshed successfully');
@@ -70,6 +77,19 @@ class AuthController {
       'Auth service is healthy'
     );
   }
-}
+    // JWKS endpoint for public key (asymmetric JWT verification)
+    @Get('.well-known/jwks.json')
+    getJwks() {
+      const publicKey = process.env.JWT_PUBLIC_KEY || '';
+      const jwk = {
+        kty: 'RSA',
+        use: 'sig',
+        alg: 'RS256',
+        kid: 'default',
+        x5c: [publicKey.replace(/\n/g, '')],
+      };
+      return ApiResponse.success({ keys: [jwk] }, 'JWKS');
+    }
+  }
 
 module.exports = { AuthController };

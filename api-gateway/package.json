@@ -8,12 +8,13 @@
     "dev": "nodemon -r @swc/register src/main.js"
   },
   "dependencies": {
+    "@maha-interop/shared": "file:../shared",
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
-    "@maha-interop/shared": "file:../shared",
+    "@nestjs/throttler": "^5.2.0",
+    "axios": "^1.6.2",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1",
-    "axios": "^1.6.2"
+    "rxjs": "^7.8.1"
   }
 }
