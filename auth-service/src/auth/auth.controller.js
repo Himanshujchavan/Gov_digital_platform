@@ -86,7 +86,7 @@ class AuthController {
         use: 'sig',
         alg: 'RS256',
         kid: 'default',
-        x5c: [publicKey.replace(/\n/g, '')],
+        x5c: [publicKey],
       };
       return ApiResponse.success({ keys: [jwk] }, 'JWKS');
     }

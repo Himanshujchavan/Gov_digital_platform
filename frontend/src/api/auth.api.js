@@ -49,7 +49,7 @@ export const authApi = {
     try {
       // First try live backend API (Gateway :8000 or Auth Service :8001)
       const res = await apiClient.post('/auth/login', credentials);
-      return res.data.data; // Return the actual payload (user, tokens)
+      return res.data; // apiClient already unwraps the Axios response
     } catch (apiErr) {
       // If backend is not running yet, provide seamless demo fallback for test users
       const user = DEMO_USERS[credentials.username];
