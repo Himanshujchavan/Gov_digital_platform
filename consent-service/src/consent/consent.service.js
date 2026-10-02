@@ -38,7 +38,7 @@ class ConsentService {
       citizenId,
       requesterDept,
       purpose,
-      dataFields,
+      dataFields: Array.isArray(dataFields) ? dataFields : Object.keys(dataFields || {}),
       status: 'PENDING',
       createdAt: new Date(),
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
@@ -48,7 +48,7 @@ class ConsentService {
       await this.db.query(
         `INSERT INTO consents (consent_id, app_id, citizen_id, requester_dept, purpose, data_fields, status, created_at, expires_at)
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        [consentId, appId, citizenId, requesterDept, purpose, JSON.stringify(dataFields), 'PENDING', request.createdAt, request.expiresAt]
+        [consentId, appId, citizenId, requesterDept, purpose, JSON.stringify(request.dataFields), 'PENDING', request.createdAt, request.expiresAt]
       );
 
       await this.rabbitMQ.publish(
@@ -68,6 +68,12 @@ class ConsentService {
     const result = await this.db.query('SELECT * FROM consents WHERE consent_id = $1', [consentId]);
     const consent = result.rows[0];
     if (!consent) throw new Error('Consent request not found');
+    if (consent.status !== 'PENDING') {
+      throw new Error(`Consent is already ${consent.status}`);
+    }
+    if (consent.expires_at && new Date(consent.expires_at) <= new Date()) {
+      throw new Error('Consent request has expired');
+    }
 
     const status = decision === 'APPROVE' ? 'GRANTED' : 'REJECTED';
     const respondedAt = new Date();
@@ -104,6 +110,9 @@ class ConsentService {
     const result = await this.db.query('SELECT * FROM consents WHERE consent_id = $1', [consentId]);
     const consent = result.rows[0];
     if (!consent) throw new Error('Consent not found');
+    if (consent.status !== 'GRANTED') {
+      throw new Error('Only granted consent can be revoked');
+    }
 
     try {
       await this.db.query(
@@ -130,6 +139,56 @@ class ConsentService {
       [citizenId, deptId, JSON.stringify([dataField])]
     );
     return result.rowCount > 0;
+  }
+
+  async getById(consentId) {
+    const result = await this.db.query('SELECT * FROM consents WHERE consent_id = $1', [consentId]);
+    return result.rows[0] || null;
+  }
+
+  async validateForApplication(appId, requesterDept, purpose, requestedFields = []) {
+    const result = await this.db.query(
+      `SELECT * FROM consents
+       WHERE app_id = $1
+         AND status = 'GRANTED'
+         AND (expires_at IS NULL OR expires_at > NOW())
+         AND revoked_at IS NULL
+       ORDER BY responded_at DESC NULLS LAST
+       LIMIT 1`,
+      [appId]
+    );
+    const consent = result.rows[0];
+    if (!consent) {
+      return false;
+    }
+
+    if (requesterDept && consent.requester_dept !== requesterDept) {
+      return false;
+    }
+    if (purpose && consent.purpose !== purpose) {
+      return false;
+    }
+
+    const consentFieldsRaw = consent.data_fields;
+    let consentFields = [];
+    if (Array.isArray(consentFieldsRaw)) {
+      consentFields = consentFieldsRaw;
+    } else if (typeof consentFieldsRaw === 'string') {
+      try {
+        const parsed = JSON.parse(consentFieldsRaw);
+        if (Array.isArray(parsed)) {
+          consentFields = parsed;
+        }
+      } catch (_error) {
+        consentFields = [];
+      }
+    }
+
+    if (!requestedFields.every((field) => consentFields.includes(field))) {
+      return false;
+    }
+
+    return true;
   }
 
   getHistory(citizenId) {

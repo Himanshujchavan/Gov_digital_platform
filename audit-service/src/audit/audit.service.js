@@ -32,11 +32,12 @@ class AuditService {
   }
 
   async logEvent(eventType, payload) {
+    const sanitizedPayload = this.sanitizePayload(payload);
     const auditEntry = {
       eventId: `AUD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
       timestamp: new Date(),
       eventType,
-      payload,
+      payload: sanitizedPayload,
       metadata: {
         version: '1.0',
         system: 'MAHA-INTEROP-MIDDLEWARE'
@@ -45,6 +46,26 @@ class AuditService {
     
     this.auditLogs.push(auditEntry);
     Logger.info(`Audit Logged: [${eventType}] - ${auditEntry.eventId}`, 'AuditService');
+  }
+
+  sanitizePayload(payload) {
+    if (!payload || typeof payload !== 'object') {
+      return payload;
+    }
+
+    const sensitiveKeys = new Set(['token', 'accessToken', 'refreshToken', 'authorization', 'password', 'signature']);
+    if (Array.isArray(payload)) {
+      return payload.map((item) => this.sanitizePayload(item));
+    }
+
+    return Object.entries(payload).reduce((acc, [key, value]) => {
+      if (sensitiveKeys.has(key)) {
+        acc[key] = '[REDACTED]';
+        return acc;
+      }
+      acc[key] = this.sanitizePayload(value);
+      return acc;
+    }, {});
   }
 
   getLogs(filter = {}) {

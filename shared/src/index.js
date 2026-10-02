@@ -11,6 +11,7 @@ const { ApiResponse } = require('./interfaces/api-response.interface');
 const { Logger } = require('./utils/logger.util');
 const { RabbitMQClient } = require('./utils/rabbitmq.util');
 const { DbUtil } = require('./utils/db.util');
+const { extractUserFromAuthHeader } = require('./utils/auth.util');
 
 module.exports = {
   Roles,
@@ -25,4 +26,5 @@ module.exports = {
   Logger,
   RabbitMQClient,
   DbUtil,
+  extractUserFromAuthHeader,
 };
